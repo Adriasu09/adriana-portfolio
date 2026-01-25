@@ -5,6 +5,7 @@ import { Terminal } from "lucide-react";
 import Link from "next/link";
 import { ThemeToggle } from "./ThemeToggle";
 import { useState, useEffect } from "react";
+import { LanguageToggle } from './LanguageToggle'
 
 export function Header() {
   const [scrolled, setScrolled] = useState(false);
@@ -44,7 +45,7 @@ export function Header() {
             <Terminal className="w-5 h-5" />
           </div>
           <h1 className="font-mono text-xl font-bold tracking-tight text-gray-900 dark:text-white">
-            DEV_SHELL
+            NANA
           </h1>
         </Link>
 
@@ -67,6 +68,7 @@ export function Header() {
 
         {/* Right section */}
         <div className="flex items-center gap-4">
+          <LanguageToggle />
           <ThemeToggle />
           <button className="hidden lg:block bg-primary px-5 py-2 rounded-lg text-sm font-bold uppercase tracking-wider text-white hover:shadow-lg hover:shadow-primary/30 transition-all">
             Resume

@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "about": "Sobre Mí",
+    "experience": "Experiencia",
+    "skills": "Habilidades",
+    "projects": "Proyectos",
+    "contact": "Contacto",
+    "resume": "CV"
+  },
+  "hero": {
+    "title": "Construyendo",
+    "titleAccent": "Experiencias Digitales",
+    "subtitle": "Desarrolladora Frontend & Fullstack especializada en crear aplicaciones web modernas, escalables y eficientes",
+    "viewProjects": "Ver Proyectos",
+    "downloadCV": "Descargar CV"
+  },
+  "terminal": {
+    "placeholder": "Escribe 'help' para ver comandos disponibles...",
+    "commands": {
+      "help": "Comandos disponibles:",
+      "whoami": {
+        "greeting": "¡Hola! Soy",
+        "role": "Desarrolladora Frontend & Fullstack",
+        "specialization": "Especializada en React, Next.js, TypeScript y Node.js",
+        "status": "Actualmente buscando nuevas oportunidades"
+      },
+      "skills": "Navegando a la sección de Habilidades...",
+      "projects": "Navegando a la sección de Proyectos...",
+      "contact": "Navegando a la sección de Contacto...",
+      "notFound": "Comando no encontrado: {command}. Escribe 'help' para ver comandos disponibles."
+    }
+  },
+  "skills": {
+    "title": "Inventario de Habilidades",
+    "categories": {
+      "frontend": "Desarrollo Frontend",
+      "backend": "Desarrollo Backend",
+      "tools": "Herramientas & DevOps"
+    }
+  },
+  "experience": {
+    "title": "Experiencia Profesional"
+  },
+  "projects": {
+    "title": "Proyectos Destacados",
+    "viewAll": "Ver Todos los Proyectos"
+  },
+  "contact": {
+    "title": "Contacta Conmigo",
+    "subtitle": "Actualmente disponible para nuevas oportunidades y proyectos freelance"
+  }
+}

@@ -1,0 +1,52 @@
+{
+  "nav": {
+    "about": "About",
+    "experience": "Experience",
+    "skills": "Skills",
+    "projects": "Projects",
+    "contact": "Contact",
+    "resume": "Resume"
+  },
+  "hero": {
+    "title": "Building Digital",
+    "titleAccent": "Experiences",
+    "subtitle": "Frontend & Fullstack Developer specialized in creating modern, scalable, and performant web applications",
+    "viewProjects": "View Projects",
+    "downloadCV": "Download CV"
+  },
+  "terminal": {
+    "placeholder": "Type 'help' for available commands...",
+    "commands": {
+      "help": "Available commands:",
+      "whoami": {
+        "greeting": "Hi! I'm",
+        "role": "Frontend & Fullstack Developer",
+        "specialization": "Specialized in React, Next.js, TypeScript, and Node.js",
+        "status": "Currently seeking new opportunities"
+      },
+      "skills": "Navigating to Skills section...",
+      "projects": "Navigating to Projects section...",
+      "contact": "Navigating to Contact section...",
+      "notFound": "Command not found: {command}. Type 'help' for available commands."
+    }
+  },
+  "skills": {
+    "title": "Skills Inventory",
+    "categories": {
+      "frontend": "Frontend Development",
+      "backend": "Backend Development",
+      "tools": "Tools & DevOps"
+    }
+  },
+  "experience": {
+    "title": "Professional Experience"
+  },
+  "projects": {
+    "title": "Featured Projects",
+    "viewAll": "View All Projects"
+  },
+  "contact": {
+    "title": "Get In Touch",
+    "subtitle": "I'm currently available for new opportunities and freelance projects"
+  }
+}
