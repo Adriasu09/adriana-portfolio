@@ -77,8 +77,17 @@ export const skills: Skill[] = [
   },
 ];
 
-export const skillCategories = {
-  frontend: "Frontend Development",
-  backend: "Backend Development",
-  tools: "Tools & DevOps",
-} as const;
+export function getCategoryName(
+  category: string,
+  t: (key: string) => string,
+): string {
+  return t(`skills.categories.${category}`);
+}
+
+export function getSkillsByCategory() {
+  return {
+    frontend: skills.filter((skill) => skill.category === "frontend"),
+    backend: skills.filter((skill) => skill.category === "backend"),
+    tools: skills.filter((skill) => skill.category === "tools"),
+  };
+}
