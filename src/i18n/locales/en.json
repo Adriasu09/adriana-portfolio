@@ -30,6 +30,27 @@
       "notFound": "Command not found: {command}. Type 'help' for available commands."
     }
   },
+  "about": {
+    "title": "About Me",
+    "tagline": "Clean code is not an option, it's a standard.",
+    "description": "I'm a Frontend & Fullstack Developer passionate about creating modern, scalable web applications. With experience in fintech and e-commerce platforms, I specialize in React, Next.js, and TypeScript. I believe in writing clean, maintainable code and creating intuitive user experiences.",
+    "stats": {
+      "experience": {
+        "value": "1+",
+        "label": "Years Experience"
+      },
+      "projects": {
+        "value": "10+",
+        "label": "Projects Completed"
+      },
+      "technologies": {
+        "value": "15+",
+        "label": "Technologies"
+      }
+    },
+    "downloadCV": "Download CV",
+    "getInTouch": "Get in Touch"
+  },
   "experience": {
     "title": "Professional Experience",
     "huargo-capital": {

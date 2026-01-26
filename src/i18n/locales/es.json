@@ -30,6 +30,27 @@
       "notFound": "Comando no encontrado: {command}. Escribe 'help' para ver comandos disponibles."
     }
   },
+  "about": {
+    "title": "Sobre Mí",
+    "tagline": "El código limpio no es una opción, es un estándar.",
+    "description": "Soy Desarrolladora Frontend & Fullstack apasionada por crear aplicaciones web modernas y escalables. Con experiencia en plataformas fintech y e-commerce, me especializo en React, Next.js y TypeScript. Creo en escribir código limpio y mantenible, y en crear experiencias de usuario intuitivas.",
+    "stats": {
+      "experience": {
+        "value": "1+",
+        "label": "Años de Experiencia"
+      },
+      "projects": {
+        "value": "10+",
+        "label": "Proyectos Completados"
+      },
+      "technologies": {
+        "value": "15+",
+        "label": "Tecnologías"
+      }
+    },
+    "downloadCV": "Descargar CV",
+    "getInTouch": "Contáctame"
+  },
   "experience": {
     "title": "Experiencia Profesional",
     "huargo-capital": {
