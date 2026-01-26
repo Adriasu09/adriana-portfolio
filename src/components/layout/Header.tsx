@@ -34,7 +34,7 @@ export function Header() {
     <header
       className={`fixed top-0 left-0 right-0 z-50 transition-all duration-300 ${
         scrolled
-          ? "bg-background-light/80 dark:bg-background-dark/80 backdrop-blur-md border-b border-gray-200 dark:border-white/10"
+          ? "bg-background/80 backdrop-blur-md border-b border-color"
           : "bg-transparent"
       }`}
     >
@@ -44,7 +44,7 @@ export function Header() {
           <div className="p-2 bg-primary rounded-lg text-white transition-transform group-hover:scale-110">
             <Terminal className="w-5 h-5" />
           </div>
-          <h1 className="font-mono text-xl font-bold tracking-tight text-gray-900 dark:text-white">
+          <h1 className="font-mono text-xl font-bold tracking-tight text-primary-color">
             NANA
           </h1>
         </Link>
@@ -56,7 +56,7 @@ export function Header() {
               key={item.href}
               href={item.href}
               onClick={(e) => handleNavClick(e, item.href)}
-              className="text-sm font-medium text-gray-600 dark:text-gray-300 hover:text-primary dark:hover:text-primary transition-colors"
+              className="text-sm font-medium text-secondary-color hover:text-primary dark:hover:text-primary transition-colors"
             >
               <span className="text-primary font-mono text-xs mr-1">
                 0{index + 1}.

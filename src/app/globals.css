@@ -1,30 +1,81 @@
 @import "tailwindcss";
 
 @theme {
-  /* Gradient Blues Palette */
+  /* ===== COLORES DE MARCA ===== */
   --color-primary: #7209b7;
   --color-primary-dark: #560bad;
-  --color-primary-light: #a020f0;
-  
-  --color-accent: #00d9ff;
-  --color-accent-dark: #00b8d4;
-  --color-accent-light: #4fc3f7;
-  
-  --color-background-dark: #0a0a0f;
-  --color-background-light: #f8f9fa;
-  
-  --color-text-dark: #e8e8e8;
-  --color-text-light: #1a1a1a;
+  --color-primary-light: #a855f7;
 
-  /* Fonts */
-  --font-family-sans: ui-sans-serif, system-ui, sans-serif;
-  --font-family-mono: ui-monospace, 'JetBrains Mono', 'Fira Code', monospace;
+  --color-accent: #06b6d4;
+  --color-accent-dark: #0891b2;
+  --color-accent-light: #22d3ee;
 
-  /* Animations */
-  --animate-typing: typing 3.5s steps(40, end);
-  --animate-blink: blink 0.7s infinite;
+  /* ===== COLORS ===== */
+  --color-background: #f8f9fa;
+  --color-elevated: #ffffff;
+  --color-subtle: #f1f5f9;
+
+  --color-text-primary: #0f172a;
+  --color-text-secondary: #475569;
+  --color-text-tertiary: #94a3b8;
+
+  --color-border: #e2e8f0;
+  --color-border-strong: #cbd5e1;
+
+  /* ===== ESTADOS ===== */
+  --color-success: #10b981;
+  --color-warning: #f59e0b;
+  --color-error: #ef4444;
 }
 
+/* Variables que cambian con el modo */
+:root {
+  --bg-base: var(--color-background);
+  --bg-elevated: var(--color-elevated);
+  --bg-subtle: var(--color-subtle);
+
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-tertiary: var(--color-text-tertiary);
+
+  --border: var(--color-border);
+  --border-strong: var(--color-border-strong);
+}
+
+.dark {
+  --color-background: #0a0a0f;
+  --color-elevated: #141419;
+  --color-subtle: #1e1e28;
+
+  --color-text-primary: #f8fafc;
+  --color-text-secondary: #cbd5e1;
+  --color-text-tertiary: #64748b;
+
+  --color-border: #27272a;
+  --color-border-strong: #3f3f46;
+
+  --bg-base: var(--color-background);
+  --bg-elevated: var(--color-elevated);
+  --bg-subtle: var(--color-subtle);
+
+  --text-primary: var(--color-text-primary);
+  --text-secondary: var(--color-text-secondary);
+  --text-tertiary: var(--color-text-tertiary);
+
+  --border: var(--color-border);
+  --border-strong: var(--color-border-strong);
+}
+
+/* ===== APLICACIÓN AUTOMÁTICA ===== */
+body {
+  background-color: var(--bg-base);
+  color: var(--text-primary);
+  transition:
+    background-color 0.3s ease,
+    color 0.3s ease;
+}
+
+/* ===== ANIMACIONES ===== */
 @keyframes typing {
   from {
     width: 0;
@@ -35,31 +86,16 @@
 }
 
 @keyframes blink {
-  0%, 50% {
+  0%,
+  50% {
     opacity: 1;
   }
-  51%, 100% {
+  51%,
+  100% {
     opacity: 0;
   }
 }
 
-/* Dark mode root */
-@media (prefers-color-scheme: dark) {
-  :root {
-    --color-background: var(--color-background-dark);
-    --color-text: var(--color-text-dark);
-  }
-}
-
-/* Light mode root */
-@media (prefers-color-scheme: light) {
-  :root {
-    --color-background: var(--color-background-light);
-    --color-text: var(--color-text-light);
-  }
-}
-
-/* Animations for the terminal */
 @keyframes fadeIn {
   from {
     opacity: 0;
@@ -72,7 +108,8 @@
 }
 
 @keyframes fadeInDelay1 {
-  0%, 40% {
+  0%,
+  40% {
     opacity: 0;
     transform: translateY(10px);
   }
@@ -83,7 +120,8 @@
 }
 
 @keyframes fadeInDelay2 {
-  0%, 60% {
+  0%,
+  60% {
     opacity: 0;
     transform: translateY(10px);
   }
@@ -94,7 +132,8 @@
 }
 
 @keyframes fadeInDelay3 {
-  0%, 80% {
+  0%,
+  80% {
     opacity: 0;
     transform: translateY(10px);
   }
@@ -118,4 +157,39 @@
 
 .animate-fadeInDelay3 {
   animation: fadeInDelay3 2.5s ease-out forwards;
+}
+
+/* ===== UTILIDADES PERSONALIZADAS ===== */
+@layer utilities {
+  .bg-base {
+    background-color: var(--bg-base);
+  }
+
+  .bg-elevated {
+    background-color: var(--bg-elevated);
+  }
+
+  .bg-subtle {
+    background-color: var(--bg-subtle);
+  }
+
+  .text-primary-color {
+    color: var(--text-primary);
+  }
+
+  .text-secondary-color {
+    color: var(--text-secondary);
+  }
+
+  .text-tertiary-color {
+    color: var(--text-tertiary);
+  }
+
+  .border-color {
+    border-color: var(--border);
+  }
+
+  .border-strong-color {
+    border-color: var(--border-strong);
+  }
 }
