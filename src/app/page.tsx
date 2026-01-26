@@ -5,7 +5,7 @@ export default function Home() {
   return (
     <>
       <Header />
-      <main className="bg-background-light dark:bg-background-dark">
+      <main className="bg-base">
         <Hero />
       </main>
     </>

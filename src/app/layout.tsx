@@ -2,6 +2,7 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "./globals.css";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
+import { I18nProvider } from "@/components/providers/I18nProvider"; // ← NUEVO
 
 const inter = Inter({
   subsets: ["latin"],
@@ -30,7 +31,11 @@ export default function RootLayout({
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-        <ThemeProvider>{children}</ThemeProvider>
+        <I18nProvider>
+          {" "}
+          {/* ← NUEVO */}
+          <ThemeProvider>{children}</ThemeProvider>
+        </I18nProvider>
       </body>
     </html>
   );

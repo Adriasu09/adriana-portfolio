@@ -1,8 +1,8 @@
 "use client";
 
-import { useState, useEffect, useRef } from "react";
-import { cn } from "@/lib/utils";
+import { useState, useEffect, useRef, useCallback } from "react";
 import { TypingText } from "@/components/ui/TypingText";
+import { useTranslation } from "react-i18next";
 
 interface Command {
   input: string;
@@ -10,156 +10,213 @@ interface Command {
 }
 
 export function Terminal() {
+  const { t, i18n } = useTranslation();
   const [commands, setCommands] = useState<Command[]>([]);
   const [currentInput, setCurrentInput] = useState("");
-  const [isTyping, setIsTyping] = useState(false);
   const [showInitialTyping, setShowInitialTyping] = useState(true);
+  const [showInput, setShowInput] = useState(false);
   const hasRunInitial = useRef(false);
+  const currentLanguage = useRef(i18n.language);
 
-  const getWhoamiOutput = () => {
-    if (showInitialTyping && commands.length === 0) {
+  const getHelpOutput = useCallback(
+    () => (
+      <div className="space-y-2 text-sm text-gray-300 animate-fadeIn">
+        <p className="text-accent font-bold">{t("terminal.commands.help")}</p>
+        <div className="grid grid-cols-2 gap-2 pl-4">
+          <span>• whoami</span>
+          <span>• help</span>
+          <span>• skills</span>
+          <span>• projects</span>
+          <span>• contact</span>
+          <span>• clear</span>
+        </div>
+      </div>
+    ),
+    [t],
+  );
+
+  const getWhoamiOutput = useCallback(
+    (useAnimation: boolean = false) => {
+      if (useAnimation && showInitialTyping) {
+        return (
+          <div className="space-y-2 text-sm text-gray-300">
+            <p>
+              <TypingText
+                text={`${t("terminal.commands.whoami.greeting")} Adriana Suárez`}
+                speed={30}
+                className="text-white font-bold"
+                onComplete={() => setShowInitialTyping(false)}
+              />
+            </p>
+            <p className="opacity-0 animate-fadeInDelay1">
+              {t("terminal.commands.whoami.role")}
+            </p>
+            <p className="opacity-0 animate-fadeInDelay2">
+              {t("terminal.commands.whoami.specialization")}
+            </p>
+            <p
+              className="text-accent opacity-0 animate-fadeInDelay3"
+              onAnimationEnd={() => setShowInput(true)}
+            >
+              🔍 {t("terminal.commands.whoami.status")}
+            </p>
+          </div>
+        );
+      }
+
       return (
         <div className="space-y-2 text-sm text-gray-300">
           <p>
-            <TypingText
-              text="👋 Hi! I'm Adriana Suárez"
-              speed={30}
-              className="text-white font-bold"
-              onComplete={() =>
-                setTimeout(() => setShowInitialTyping(false), 2000)
-              }
-            />
+            👋 {t("terminal.commands.whoami.greeting")}{" "}
+            <span className="text-white font-bold">Adriana Suárez</span>
           </p>
-          <p className="opacity-0 animate-fadeInDelay1">
-            Frontend & Fullstack Developer
-          </p>
-          <p className="opacity-0 animate-fadeInDelay2">
-            Specialized in React, Next.js, TypeScript, and Node.js
-          </p>
-          <p className="text-accent opacity-0 animate-fadeInDelay3">
-            🔍 Currently seeking new opportunities
+          <p>{t("terminal.commands.whoami.role")}</p>
+          <p>{t("terminal.commands.whoami.specialization")}</p>
+          <p className="text-accent">
+            🔍 {t("terminal.commands.whoami.status")}
           </p>
         </div>
       );
-    }
+    },
+    [t, showInitialTyping],
+  );
 
-    return (
-      <div className="space-y-2 text-sm text-gray-300 animate-fadeIn">
-        <p>
-          👋 Hi! I&apos;m{" "}
-          <span className="text-white font-bold">Adriana Suárez</span>
-        </p>
-        <p>Frontend & Fullstack Developer</p>
-        <p>Specialized in React, Next.js, TypeScript, and Node.js</p>
-        <p className="text-accent">🔍 Currently seeking new opportunities</p>
-      </div>
-    );
-  };
+  const regenerateCommandOutput = useCallback(
+    (input: string) => {
+      switch (input.toLowerCase()) {
+        case "whoami":
+          return getWhoamiOutput(false);
+        case "help":
+          return getHelpOutput();
+        case "skills":
+          return <p className="text-accent">{t("terminal.commands.skills")}</p>;
+        case "projects":
+          return (
+            <p className="text-accent">{t("terminal.commands.projects")}</p>
+          );
+        case "contact":
+          return (
+            <p className="text-accent">{t("terminal.commands.contact")}</p>
+          );
+        default:
+          return (
+            <p className="text-red-400">
+              {t("terminal.commands.notFound", { command: input })}
+            </p>
+          );
+      }
+    },
+    [t, getWhoamiOutput, getHelpOutput],
+  );
 
-  const executeCommand = (input: string) => {
-    const trimmedInput = input.trim().toLowerCase();
+  const executeCommand = useCallback(
+    (input: string, useAnimation: boolean = false) => {
+      const trimmedInput = input.trim().toLowerCase();
 
-    if (trimmedInput === "") return;
+      if (trimmedInput === "") return;
 
-    let output: React.ReactNode = null;
+      let output: React.ReactNode = null;
 
-    switch (trimmedInput) {
-      case "whoami":
-        output = getWhoamiOutput();
-        break;
+      switch (trimmedInput) {
+        case "whoami":
+          output = getWhoamiOutput(useAnimation);
+          break;
 
-      case "help":
-        output = (
-          <div className="space-y-2 text-sm text-gray-300 animate-fadeIn">
-            <p className="text-accent font-bold">Available commands:</p>
-            <div className="grid grid-cols-2 gap-2 pl-4">
-              <span>• whoami</span>
-              <span>• help</span>
-              <span>• skills</span>
-              <span>• projects</span>
-              <span>• contact</span>
-              <span>• clear</span>
-            </div>
-          </div>
+        case "help":
+          output = getHelpOutput();
+          break;
+
+        case "skills":
+          {
+            const element = document.querySelector("#skills");
+            if (element) element.scrollIntoView({ behavior: "smooth" });
+            output = (
+              <p className="text-accent animate-fadeIn">
+                {t("terminal.commands.skills")}
+              </p>
+            );
+          }
+          break;
+
+        case "projects":
+          {
+            const element = document.querySelector("#projects");
+            if (element) element.scrollIntoView({ behavior: "smooth" });
+            output = (
+              <p className="text-accent animate-fadeIn">
+                {t("terminal.commands.projects")}
+              </p>
+            );
+          }
+          break;
+
+        case "contact":
+          {
+            const element = document.querySelector("#contact");
+            if (element) element.scrollIntoView({ behavior: "smooth" });
+            output = (
+              <p className="text-accent animate-fadeIn">
+                {t("terminal.commands.contact")}
+              </p>
+            );
+          }
+          break;
+
+        case "clear":
+          setCommands([]);
+          return;
+
+        default:
+          output = (
+            <p className="text-red-400 animate-fadeIn">
+              {t("terminal.commands.notFound", { command: trimmedInput })}
+            </p>
+          );
+      }
+
+      setCommands((prev) => [...prev, { input: trimmedInput, output }]);
+    },
+    [t, getWhoamiOutput, getHelpOutput],
+  );
+
+  useEffect(() => {
+    if (currentLanguage.current !== i18n.language) {
+      currentLanguage.current = i18n.language;
+
+      const timer = setTimeout(() => {
+        setCommands((prev) =>
+          prev.map((cmd) => ({
+            ...cmd,
+            output: regenerateCommandOutput(cmd.input),
+          })),
         );
-        break;
+      }, 0);
 
-      case "skills":
-        {
-          const element = document.querySelector("#skills");
-          if (element) element.scrollIntoView({ behavior: "smooth" });
-          output = (
-            <p className="text-accent animate-fadeIn">
-              Navigating to Skills section...
-            </p>
-          );
-        }
-        break;
-
-      case "projects":
-        {
-          const element = document.querySelector("#projects");
-          if (element) element.scrollIntoView({ behavior: "smooth" });
-          output = (
-            <p className="text-accent animate-fadeIn">
-              Navigating to Projects section...
-            </p>
-          );
-        }
-        break;
-
-      case "contact":
-        {
-          const element = document.querySelector("#contact");
-          if (element) element.scrollIntoView({ behavior: "smooth" });
-          output = (
-            <p className="text-accent animate-fadeIn">
-              Navigating to Contact section...
-            </p>
-          );
-        }
-        break;
-
-      case "clear":
-        setCommands([]);
-        return;
-
-      default:
-        output = (
-          <p className="text-red-400 animate-fadeIn">
-            Command not found: {trimmedInput}. Type &apos;help&apos; for
-            available commands.
-          </p>
-        );
+      return () => clearTimeout(timer);
     }
-
-    setCommands((prev) => [...prev, { input: trimmedInput, output }]);
-  };
+  }, [i18n.language, regenerateCommandOutput]);
 
   const handleSubmit = (e: React.FormEvent) => {
     e.preventDefault();
     if (currentInput.trim()) {
-      executeCommand(currentInput);
+      executeCommand(currentInput, false);
       setCurrentInput("");
     }
   };
 
-  // Ejecutar comando inicial
   useEffect(() => {
     if (hasRunInitial.current) return;
+    if (!i18n.isInitialized) return;
 
     hasRunInitial.current = true;
 
     const runInitialCommand = async () => {
-      setIsTyping(true);
       await new Promise((resolve) => setTimeout(resolve, 500));
-      executeCommand("whoami");
-      setIsTyping(false);
+      executeCommand("whoami", true);
     };
 
     runInitialCommand();
-  // eslint-disable-next-line react-hooks/exhaustive-deps
-  }, []);
+  }, [i18n.isInitialized, executeCommand]);
 
   return (
     <div className="w-full max-w-4xl mx-auto">
@@ -188,22 +245,21 @@ export function Terminal() {
             </div>
           ))}
 
-          <form onSubmit={handleSubmit} className="flex gap-2">
-            <span className="text-primary">➜</span>
-            <span className="text-accent">~</span>
-            <input
-              type="text"
-              value={currentInput}
-              onChange={(e) => setCurrentInput(e.target.value)}
-              className="flex-1 bg-transparent border-none outline-none text-white placeholder:text-gray-600"
-              placeholder="Type 'help' for available commands..."
-              autoFocus
-              disabled={isTyping}
-            />
-            <span
-              className={cn("w-2 h-5 bg-white/60", isTyping && "animate-pulse")}
-            ></span>
-          </form>
+          {showInput && (
+            <form onSubmit={handleSubmit} className="flex gap-2">
+              <span className="text-primary">➜</span>
+              <span className="text-accent">~</span>
+              <input
+                type="text"
+                value={currentInput}
+                onChange={(e) => setCurrentInput(e.target.value)}
+                className="flex-1 bg-transparent border-none outline-none text-white placeholder:text-gray-600"
+                placeholder={t("terminal.placeholder")}
+                autoFocus
+              />
+              <span className="w-2 h-5 bg-white/60 animate-pulse"></span>
+            </form>
+          )}
         </div>
       </div>
     </div>
