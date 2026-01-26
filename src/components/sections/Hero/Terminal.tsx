@@ -233,7 +233,7 @@ export function Terminal() {
           <div className="w-14"></div>
         </div>
 
-        <div className="p-6 font-mono text-sm min-h-100 max-h-150 overflow-y-auto">
+        <div className="p-6 font-mono text-sm min-h-80 max-h-100 overflow-y-auto">
           {commands.map((cmd, index) => (
             <div key={index} className="mb-4">
               <div className="flex gap-2 mb-2">

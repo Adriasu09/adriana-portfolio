@@ -30,6 +30,70 @@
       "notFound": "Command not found: {command}. Type 'help' for available commands."
     }
   },
+  "about": {
+    "title": "About Me",
+    "tagline": "Clean code is not an option, it's a standard.",
+    "description": "I'm a Frontend & Fullstack Developer passionate about creating modern, scalable web applications. With experience in fintech and e-commerce platforms, I specialize in React, Next.js, and TypeScript. I believe in writing clean, maintainable code and creating intuitive user experiences.",
+    "stats": {
+      "experience": {
+        "value": "1+",
+        "label": "Years Experience"
+      },
+      "projects": {
+        "value": "10+",
+        "label": "Projects Completed"
+      },
+      "technologies": {
+        "value": "15+",
+        "label": "Technologies"
+      }
+    },
+    "downloadCV": "Download CV",
+    "getInTouch": "Get in Touch"
+  },
+  "experience": {
+    "title": "Professional Experience",
+    "huargo-capital": {
+      "position": "Frontend/Fullstack Developer",
+      "period": "Jan 2025 - Present",
+      "location": "Remote",
+      "description": "Developed and maintained fintech platforms including Riitmo (cryptocurrency trading) and Pórtiqo (investment platform).",
+      "achievements": {
+        "0": "Built comprehensive dashboard systems with real-time user statistics and KYC alerts",
+        "1": "Implemented advanced filtering capabilities and user management features",
+        "2": "Developed investment product administration with legal document editors (WYSIWYG)",
+        "3": "Integrated KYC verification system with Sumsub API",
+        "4": "Created media management systems for platform content",
+        "5": "Worked with microservices architecture (NestJS backend + React frontend)"
+      }
+    },
+    "fusuma": {
+      "position": "Fullstack Developer (Internship)",
+      "period": "Oct 2024 - Jan 2025",
+      "location": "Barcelona, Spain",
+      "description": "Completed a 3-month internship developing full-stack applications with focus on frontend development using modern frameworks and best practices.",
+      "achievements": {
+        "0": "Developed features for ECUS platform using Next.js and TypeScript",
+        "1": "Contributed to Rapid project with responsive UI components",
+        "2": "Implemented user interfaces following design specifications",
+        "3": "Collaborated with senior developers using Git workflow",
+        "4": "Participated in code reviews and daily stand-ups",
+        "5": "Applied best practices in component architecture and state management"
+      }
+    },
+    "gamma-tech-school": {
+      "position": "Frontend Development Bootcamp",
+      "period": "Feb 2024 - Sep 2024",
+      "location": "Barcelona, Spain",
+      "description": "Completed intensive 500-hour frontend development bootcamp focusing on modern web technologies and best practices.",
+      "achievements": {
+        "0": "Built multiple full-stack projects from scratch",
+        "1": "Learned React, TypeScript, and modern frontend tooling",
+        "2": "Collaborated on team projects using Git workflow",
+        "3": "Developed responsive and accessible user interfaces"
+      }
+    }
+  },
   "skills": {
     "title": "Skills Inventory",
     "categories": {
@@ -38,12 +102,24 @@
       "tools": "Tools & DevOps"
     }
   },
-  "experience": {
-    "title": "Professional Experience"
-  },
   "projects": {
     "title": "Featured Projects",
-    "viewAll": "View All Projects"
+    "viewAll": "View All Projects",
+    "portfolio": {
+      "title": "Developer Portfolio",
+      "description": "Interactive terminal-themed portfolio built with Next.js 16, featuring modern animations and dark mode support.",
+      "longDescription": "A modern, responsive portfolio showcasing my work with an interactive terminal interface, complete dark/light mode support, and bilingual content (EN/ES)."
+    },
+    "proyecto-1": {
+      "title": "Project Name 1",
+      "description": "Short project description (1-2 lines)",
+      "longDescription": "Detailed description of what the project does, problems it solves, and main features."
+    },
+    "proyecto-2": {
+      "title": "Project Name 2",
+      "description": "Short project description (1-2 lines)",
+      "longDescription": "Detailed description of what the project does, problems it solves, and main features."
+    }
   },
   "contact": {
     "title": "Get In Touch",

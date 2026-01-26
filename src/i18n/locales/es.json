@@ -30,6 +30,70 @@
       "notFound": "Comando no encontrado: {command}. Escribe 'help' para ver comandos disponibles."
     }
   },
+  "about": {
+    "title": "Sobre Mí",
+    "tagline": "El código limpio no es una opción, es un estándar.",
+    "description": "Soy Desarrolladora Frontend & Fullstack apasionada por crear aplicaciones web modernas y escalables. Con experiencia en plataformas fintech y e-commerce, me especializo en React, Next.js y TypeScript. Creo en escribir código limpio y mantenible, y en crear experiencias de usuario intuitivas.",
+    "stats": {
+      "experience": {
+        "value": "1+",
+        "label": "Años de Experiencia"
+      },
+      "projects": {
+        "value": "10+",
+        "label": "Proyectos Completados"
+      },
+      "technologies": {
+        "value": "15+",
+        "label": "Tecnologías"
+      }
+    },
+    "downloadCV": "Descargar CV",
+    "getInTouch": "Contáctame"
+  },
+  "experience": {
+    "title": "Experiencia Profesional",
+    "huargo-capital": {
+      "position": "Desarrolladora Frontend/Fullstack",
+      "period": "Ene 2025 - Presente",
+      "location": "Remoto",
+      "description": "Desarrollé y mantuve plataformas fintech incluyendo Riitmo (trading de criptomonedas) y Pórtiqo (plataforma de inversión).",
+      "achievements": {
+        "0": "Construí sistemas de dashboard completos con estadísticas de usuarios en tiempo real y alertas KYC",
+        "1": "Implementé capacidades avanzadas de filtrado y funcionalidades de gestión de usuarios",
+        "2": "Desarrollé administración de productos de inversión con editores de documentos legales (WYSIWYG)",
+        "3": "Integré sistema de verificación KYC con API de Sumsub",
+        "4": "Creé sistemas de gestión de medios para contenido de la plataforma",
+        "5": "Trabajé con arquitectura de microservicios (backend NestJS + frontend React)"
+      }
+    },
+    "fusuma": {
+      "position": "Desarrolladora Fullstack (Prácticas)",
+      "period": "Oct 2024 - Ene 2025",
+      "location": "Barcelona, España",
+      "description": "Completé prácticas de 3 meses desarrollando aplicaciones full-stack con enfoque en desarrollo frontend usando frameworks modernos y mejores prácticas.",
+      "achievements": {
+        "0": "Desarrollé funcionalidades para la plataforma ECUS usando Next.js y TypeScript",
+        "1": "Contribuí al proyecto Rapid con componentes UI responsivos",
+        "2": "Implementé interfaces de usuario siguiendo especificaciones de diseño",
+        "3": "Colaboré con desarrolladores senior usando flujo de trabajo Git",
+        "4": "Participé en revisiones de código y reuniones diarias",
+        "5": "Apliqué mejores prácticas en arquitectura de componentes y gestión de estado"
+      }
+    },
+    "gamma-tech-school": {
+      "position": "Bootcamp de Desarrollo Frontend",
+      "period": "Feb 2024 - Sep 2024",
+      "location": "Barcelona, España",
+      "description": "Completé bootcamp intensivo de 500 horas de desarrollo frontend enfocado en tecnologías web modernas y mejores prácticas.",
+      "achievements": {
+        "0": "Construí múltiples proyectos full-stack desde cero",
+        "1": "Aprendí React, TypeScript y herramientas frontend modernas",
+        "2": "Colaboré en proyectos de equipo usando flujo de trabajo Git",
+        "3": "Desarrollé interfaces de usuario responsivas y accesibles"
+      }
+    }
+  },
   "skills": {
     "title": "Inventario de Habilidades",
     "categories": {
@@ -38,12 +102,24 @@
       "tools": "Herramientas & DevOps"
     }
   },
-  "experience": {
-    "title": "Experiencia Profesional"
-  },
   "projects": {
     "title": "Proyectos Destacados",
-    "viewAll": "Ver Todos los Proyectos"
+    "viewAll": "Ver Todos los Proyectos",
+    "portfolio": {
+      "title": "Portfolio de Desarrolladora",
+      "description": "Portfolio interactivo con temática de terminal construido con Next.js 16, con animaciones modernas y soporte de modo oscuro.",
+      "longDescription": "Un portfolio moderno y responsivo que muestra mi trabajo con una interfaz de terminal interactiva, soporte completo de modo oscuro/claro, y contenido bilingüe (EN/ES)."
+    },
+    "proyecto-1": {
+      "title": "Nombre Proyecto 1",
+      "description": "Descripción corta del proyecto (1-2 líneas)",
+      "longDescription": "Descripción detallada de qué hace el proyecto, qué problemas resuelve y características principales."
+    },
+    "proyecto-2": {
+      "title": "Nombre Proyecto 2",
+      "description": "Descripción corta del proyecto (1-2 líneas)",
+      "longDescription": "Descripción detallada de qué hace el proyecto, qué problemas resuelve y características principales."
+    }
   },
   "contact": {
     "title": "Contacta Conmigo",
