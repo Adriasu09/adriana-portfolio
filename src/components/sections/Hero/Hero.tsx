@@ -2,7 +2,7 @@
 
 import { Terminal } from "./Terminal";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui";
 import { Download, Rocket } from "lucide-react";
 
 export function Hero() {

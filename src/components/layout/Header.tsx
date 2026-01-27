@@ -6,7 +6,7 @@ import { ThemeToggle } from "./ThemeToggle";
 import { useState, useEffect } from "react";
 import { LanguageToggle } from "./LanguageToggle";
 import { useTranslation } from "react-i18next";
-import { Button } from "@/components/ui/Button";
+import { Button } from "@/components/ui";
 import { Download } from "lucide-react";
 
 export function Header() {
@@ -63,7 +63,7 @@ export function Header() {
             <Terminal className="w-5 h-5" />
           </div>
           <h1 className="font-mono text-xl font-bold tracking-tight text-primary-color">
-            NANA
+            NANA_DEV
           </h1>
         </Link>
 
