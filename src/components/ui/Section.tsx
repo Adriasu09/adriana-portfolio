@@ -42,7 +42,7 @@ export function SectionHeader({
       <h2 className="text-3xl md:text-4xl font-bold tracking-tight text-primary-color uppercase">
         {title}
       </h2>
-      <div className="h-px flex-1 bg-border"></div>
+      <div className="h-0.5 flex-1 bg-border"></div>
     </div>
   );
 }
