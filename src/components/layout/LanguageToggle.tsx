@@ -6,8 +6,8 @@ import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
 
 const languages = [
-  { code: "en", name: "English", flag: "🇬🇧" },
-  { code: "es", name: "Español", flag: "🇪🇸" },
+  { code: "en", name: "English", flagCode: "gb" },
+  { code: "es", name: "Español", flagCode: "es" },
 ] as const;
 
 export function LanguageToggle() {
@@ -42,17 +42,18 @@ export function LanguageToggle() {
       <button
         onClick={() => setIsOpen(!isOpen)}
         className="cursor-pointer p-2 rounded-lg bg-elevated border border-color hover:bg-subtle transition-colors flex items-center gap-2"
-        aria-label="Select language"
+        aria-label={`Select language (current: ${currentLang.name})`}
+        title={currentLang.name}
       >
         <Globe className="w-5 h-5 text-primary-color" />
-        <span className="text-xs font-mono uppercase text-primary-color">
+        <span className="text-xs font-mono uppercase text-primary-color font-bold">
           {currentLang.code}
         </span>
       </button>
 
       {/* Dropdown */}
       {isOpen && (
-        <div className="absolute right-0 mt-2 w-48 rounded-lg bg-elevated border border-color shadow-xl z-50 overflow-hidden">
+        <div className="absolute right-0 mt-2 w-40 rounded-lg bg-elevated border border-color shadow-xl z-50 overflow-hidden">
           {languages.map((lang) => (
             <button
               key={lang.code}
@@ -61,15 +62,28 @@ export function LanguageToggle() {
                 "cursor-pointer w-full px-4 py-3 flex items-center justify-between hover:bg-subtle transition-colors text-left",
                 i18n.language === lang.code && "bg-subtle",
               )}
+              aria-label={`Switch to ${lang.name}`}
             >
               <div className="flex items-center gap-3">
-                <span className="text-xl">{lang.flag}</span>
+                {/* Flag Icon */}
+                <div className="flex h-5 w-5 items-center justify-center overflow-hidden rounded-full">
+                  <span
+                    className={`fi fi-${lang.flagCode}`}
+                    style={{
+                      width: "20px",
+                      height: "20px",
+                      transform: "scale(1.3)",
+                    }}
+                    role="img"
+                    aria-label={`${lang.name} flag`}
+                  />
+                </div>
                 <span className="text-sm font-medium text-primary-color">
                   {lang.name}
                 </span>
               </div>
               {i18n.language === lang.code && (
-                <Check className="w-4 h-4 text-primary" />
+                <Check className="w-4 h-4 text-primary" aria-hidden="true" />
               )}
             </button>
           ))}
