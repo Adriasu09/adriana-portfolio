@@ -1,4 +1,5 @@
 @import "tailwindcss";
+@import "flag-icons/css/flag-icons.min.css";
 
 @theme {
   /* ===== COLORES DE MARCA ===== */
@@ -11,9 +12,9 @@
   --color-accent-light: #22d3ee;
 
   /* ===== COLORS ===== */
-  --color-background: #f8f9fa;
-  --color-elevated: #ffffff;
-  --color-subtle: #f1f5f9;
+  --color-background: #f0f2f5;
+  --color-elevated: #f8f9fa;
+  --color-subtle: #e8ebed;
 
   --color-text-primary: #0f172a;
   --color-text-secondary: #475569;

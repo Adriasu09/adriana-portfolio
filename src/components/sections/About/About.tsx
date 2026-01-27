@@ -2,6 +2,7 @@
 
 import { useTranslation } from "react-i18next";
 import Image from "next/image";
+import { Section, SectionHeader } from "@/components/ui";
 
 export function About() {
   const { t } = useTranslation();
@@ -22,18 +23,8 @@ export function About() {
   ];
 
   return (
-    <section
-      id="about"
-      className="py-12 md:py-24 px-6 max-w-7xl mx-auto scroll-mt-16"
-    >
-      {/* Section Header */}
-      <div className="flex items-center gap-4 mb-8 md:mb-16">
-        <span className="font-mono text-primary text-xl">01.</span>
-        <h2 className="text-2xl md:text-3xl font-bold tracking-tight text-primary-color uppercase">
-          {t("about.title")}
-        </h2>
-        <div className="h-px flex-1 bg-border"></div>
-      </div>
+    <Section id="about">
+      <SectionHeader number="01" title={t("about.title")} />
 
       {/* Content Grid */}
       <div className="grid grid-cols-1 lg:grid-cols-2 gap-8 lg:gap-16 items-center">
@@ -74,11 +65,20 @@ export function About() {
 
           {/* Photo Container */}
           <div className="relative w-56 h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-2xl border-2 border-primary overflow-hidden z-10">
+            {/* Foto SIN gafas (base) - solo visible en desktop con grayscale */}
             <Image
-              src="/images/avatar.jpg"
-              alt="Adriana Suárez"
+              src="/images/nana_sin_gafas.png"
+              alt="Adriana Suárez - Frontend Developer"
               fill
-              className="object-cover lg:grayscale lg:hover:grayscale-0 transition-all duration-500"
+              className="object-cover grayscale transition-all duration-700 ease-in-out hidden lg:block"
+              priority
+            />
+            {/* Foto CON gafas (hover en desktop, siempre visible en móvil) */}
+            <Image
+              src="/images/nana_con_gafas.png"
+              alt="Adriana Suárez - Frontend Developer"
+              fill
+              className="object-cover lg:absolute lg:inset-0 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-700 ease-in-out"
               priority
             />
           </div>
@@ -87,6 +87,6 @@ export function About() {
           <div className="absolute -bottom-4 -right-4 md:-bottom-6 md:-right-6 w-24 h-24 md:w-32 md:h-32 border-b-2 border-r-2 border-accent rounded-br-2xl"></div>
         </div>
       </div>
-    </section>
+    </Section>
   );
 }

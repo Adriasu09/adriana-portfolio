@@ -2,9 +2,25 @@
 
 import { Terminal } from "./Terminal";
 import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui";
+import { Download, Rocket } from "lucide-react";
 
 export function Hero() {
   const { t } = useTranslation();
+
+  const handleDownloadCV = () => {
+    const link = document.createElement("a");
+    link.href = "/cv/CV_Adriana_Suarez_2026.pdf";
+    link.download = "CV_Adriana_Suarez.pdf";
+    link.click();
+  };
+
+  const handleScrollToProjects = () => {
+    const projectsSection = document.getElementById("projects");
+    if (projectsSection) {
+      projectsSection.scrollIntoView({ behavior: "smooth" });
+    }
+  };
 
   return (
     <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20">
@@ -20,13 +36,20 @@ export function Hero() {
 
       <Terminal />
 
-      <div className="mt-12 flex gap-4">
-        <button className="bg-primary text-white px-8 py-3 rounded-xl font-bold shadow-lg shadow-primary/30 hover:-translate-y-1 transition-transform">
+      <div className="mt-12 flex flex-wrap gap-4 justify-center">
+        <Button
+          variant="primary"
+          size="lg"
+          onClick={handleScrollToProjects}
+          className="group"
+        >
+          <Rocket className="w-5 h-5 group-hover:translate-x-1 transition-transform" />
           {t("hero.viewProjects")}
-        </button>
-        <button className="bg-elevated border border-color px-8 py-3 rounded-xl font-bold hover:bg-subtle transition-all text-primary-color">
+        </Button>
+        <Button variant="secondary" size="lg" onClick={handleDownloadCV}>
+          <Download className="w-5 h-5" />
           {t("hero.downloadCV")}
-        </button>
+        </Button>
       </div>
     </section>
   );

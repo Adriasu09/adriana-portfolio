@@ -23,6 +23,7 @@ export const experiences: Experience[] = [
       "Next.js",
       "TypeScript",
       "TanStack Router/Query",
+      "Node.js",
       "NestJS",
       "PostgreSQL",
       "Prisma ORM",
@@ -63,6 +64,7 @@ export const experiences: Experience[] = [
       "HTML/CSS",
       "Git",
       "Responsive Design",
+      "firebase",
     ],
   },
 ];

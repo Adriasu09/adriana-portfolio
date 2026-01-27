@@ -6,10 +6,19 @@ import { ThemeToggle } from "./ThemeToggle";
 import { useState, useEffect } from "react";
 import { LanguageToggle } from "./LanguageToggle";
 import { useTranslation } from "react-i18next";
+import { Button } from "@/components/ui";
+import { Download } from "lucide-react";
 
 export function Header() {
   const { t } = useTranslation();
   const [scrolled, setScrolled] = useState(false);
+
+  const handleDownloadCV = () => {
+    const link = document.createElement("a");
+    link.href = "/cv/CV_Adriana_Suarez_2026.pdf";
+    link.download = "CV_Adriana_Suarez.pdf";
+    link.click();
+  };
 
   useEffect(() => {
     const handleScroll = () => {
@@ -54,7 +63,7 @@ export function Header() {
             <Terminal className="w-5 h-5" />
           </div>
           <h1 className="font-mono text-xl font-bold tracking-tight text-primary-color">
-            NANA
+            NANA_DEV
           </h1>
         </Link>
 
@@ -79,9 +88,15 @@ export function Header() {
         <div className="flex items-center gap-4">
           <LanguageToggle />
           <ThemeToggle />
-          <button className="hidden lg:block bg-primary px-5 py-2 rounded-lg text-sm font-bold uppercase tracking-wider text-white hover:shadow-lg hover:shadow-primary/30 transition-all">
+          <Button
+            variant="primary"
+            size="sm"
+            onClick={handleDownloadCV}
+            className="hidden lg:flex"
+          >
+            <Download className="w-4 h-4" />
             {t("nav.resume")}
-          </button>
+          </Button>
         </div>
       </div>
     </header>

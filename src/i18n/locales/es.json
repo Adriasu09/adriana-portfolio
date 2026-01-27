@@ -55,7 +55,7 @@
     "title": "Experiencia Profesional",
     "huargo-capital": {
       "position": "Desarrolladora Frontend/Fullstack",
-      "period": "Ene 2025 - Presente",
+      "period": "Jul 2025 - Ene 2026",
       "location": "Remoto",
       "description": "Desarrollé y mantuve plataformas fintech incluyendo Riitmo (trading de criptomonedas) y Pórtiqo (plataforma de inversión).",
       "achievements": {
@@ -70,7 +70,7 @@
     "fusuma": {
       "position": "Desarrolladora Fullstack (Prácticas)",
       "period": "Oct 2024 - Ene 2025",
-      "location": "Barcelona, España",
+      "location": "Madrid, España",
       "description": "Completé prácticas de 3 meses desarrollando aplicaciones full-stack con enfoque en desarrollo frontend usando frameworks modernos y mejores prácticas.",
       "achievements": {
         "0": "Desarrollé funcionalidades para la plataforma ECUS usando Next.js y TypeScript",
@@ -83,8 +83,8 @@
     },
     "gamma-tech-school": {
       "position": "Bootcamp de Desarrollo Frontend",
-      "period": "Feb 2024 - Sep 2024",
-      "location": "Barcelona, España",
+      "period": "Abr 2024 - Sep 2024",
+      "location": "Madrid, España",
       "description": "Completé bootcamp intensivo de 500 horas de desarrollo frontend enfocado en tecnologías web modernas y mejores prácticas.",
       "achievements": {
         "0": "Construí múltiples proyectos full-stack desde cero",
