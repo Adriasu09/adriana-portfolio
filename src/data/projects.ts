@@ -25,7 +25,7 @@ export const projects: Project[] = [
       "i18next",
     ],
     githubUrl: "https://github.com/Adriasu09/adriana-portfolio",
-    liveUrl: "https://adriana-portfolio.vercel.app",
+    liveUrl: "https://adriana-portfolio-blue.vercel.app/",
     featured: true,
     category: "web-app",
   },
