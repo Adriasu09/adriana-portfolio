@@ -65,11 +65,20 @@ export function About() {
 
           {/* Photo Container */}
           <div className="relative w-56 h-56 md:w-64 md:h-64 lg:w-80 lg:h-80 rounded-2xl border-2 border-primary overflow-hidden z-10">
+            {/* Foto SIN gafas (base) - solo visible en desktop con grayscale */}
             <Image
-              src="/images/avatar.jpg"
+              src="/images/nana_sin_gafas.png"
               alt="Adriana Suárez - Frontend Developer"
               fill
-              className="object-cover lg:grayscale lg:hover:grayscale-0 transition-all duration-500"
+              className="object-cover grayscale transition-all duration-700 ease-in-out hidden lg:block"
+              priority
+            />
+            {/* Foto CON gafas (hover en desktop, siempre visible en móvil) */}
+            <Image
+              src="/images/nana_con_gafas.png"
+              alt="Adriana Suárez - Frontend Developer"
+              fill
+              className="object-cover lg:absolute lg:inset-0 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-700 ease-in-out"
               priority
             />
           </div>
