@@ -27,7 +27,7 @@
       "skills": "Navegando a la sección de Habilidades...",
       "projects": "Navegando a la sección de Proyectos...",
       "contact": "Navegando a la sección de Contacto...",
-      "notFound": "Comando no encontrado: {command}. Escribe 'help' para ver comandos disponibles."
+      "notFound": "Comando no encontrado. Escribe 'help' para ver comandos disponibles."
     }
   },
   "about": {

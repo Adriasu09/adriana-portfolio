@@ -27,7 +27,7 @@
       "skills": "Navigating to Skills section...",
       "projects": "Navigating to Projects section...",
       "contact": "Navigating to Contact section...",
-      "notFound": "Command not found: {command}. Type 'help' for available commands."
+      "notFound": "Command not found. Type 'help' for available commands."
     }
   },
   "about": {

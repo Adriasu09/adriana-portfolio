@@ -14,7 +14,7 @@ import {
 type SubmitStatus = "idle" | "loading" | "success" | "error";
 
 export function Contact() {
-  const { t } = useTranslation();
+  const { t, i18n } = useTranslation();
   const [status, setStatus] = useState<SubmitStatus>("idle");
 
   const {
@@ -32,7 +32,10 @@ export function Contact() {
       const response = await fetch("/api/contact", {
         method: "POST",
         headers: { "Content-Type": "application/json" },
-        body: JSON.stringify(data),
+        body: JSON.stringify({
+          ...data,
+          language: i18n.language, // Añadir idioma actual
+        }),
       });
 
       if (!response.ok) throw new Error("Failed to send message");
