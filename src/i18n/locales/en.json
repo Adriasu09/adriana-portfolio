@@ -40,7 +40,7 @@
         "label": "Years Experience"
       },
       "projects": {
-        "value": "10+",
+        "value": "3+",
         "label": "Projects Completed"
       },
       "technologies": {
@@ -138,7 +138,15 @@
       "submit": "Execute Send",
       "sending": "Sending...",
       "success": "Message Sent!",
-      "error": "Send Failed"
+      "error": "Send Failed",
+      "errors": {
+        "nameMin": "Name must be at least 2 characters",
+        "nameMax": "Name cannot exceed 50 characters",
+        "emailInvalid": "Please enter a valid email",
+        "emailRequired": "Email is required",
+        "messageMin": "Message must be at least 10 characters",
+        "messageMax": "Message cannot exceed 1000 characters"
+      }
     }
   }
 }

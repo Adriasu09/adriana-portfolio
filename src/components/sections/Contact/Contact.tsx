@@ -7,7 +7,7 @@ import { Loader2, CheckCircle2, XCircle, SendHorizonal } from "lucide-react";
 import { useForm } from "react-hook-form";
 import { zodResolver } from "@hookform/resolvers/zod";
 import {
-  contactFormSchema,
+  getContactFormSchema,
   type ContactFormData,
 } from "@/lib/validations/contact";
 
@@ -23,9 +23,8 @@ export function Contact() {
     reset,
     formState: { errors },
   } = useForm<ContactFormData>({
-    resolver: zodResolver(contactFormSchema),
+    resolver: zodResolver(getContactFormSchema(t)),
   });
-
   const onSubmit = async (data: ContactFormData) => {
     setStatus("loading");
 

@@ -40,7 +40,7 @@
         "label": "Años de Experiencia"
       },
       "projects": {
-        "value": "10+",
+        "value": "3+",
         "label": "Proyectos Completados"
       },
       "technologies": {
@@ -138,7 +138,15 @@
       "submit": "Ejecutar Envío",
       "sending": "Enviando...",
       "success": "¡Mensaje Enviado!",
-      "error": "Error al Enviar"
+      "error": "Error al Enviar",
+      "errors": {
+        "nameMin": "El nombre debe tener al menos 2 caracteres",
+        "nameMax": "El nombre no puede exceder 50 caracteres",
+        "emailInvalid": "Por favor ingresa un email válido",
+        "emailRequired": "El email es requerido",
+        "messageMin": "El mensaje debe tener al menos 10 caracteres",
+        "messageMax": "El mensaje no puede exceder 1000 caracteres"
+      }
     }
   }
 }
