@@ -104,21 +104,23 @@
   },
   "projects": {
     "title": "Proyectos Destacados",
-    "viewAll": "Ver Todos los Proyectos",
+
     "portfolio": {
-      "title": "Portfolio de Desarrolladora",
-      "description": "Portfolio interactivo con temática de terminal construido con Next.js 16, con animaciones modernas y soporte de modo oscuro.",
-      "longDescription": "Un portfolio moderno y responsivo que muestra mi trabajo con una interfaz de terminal interactiva, soporte completo de modo oscuro/claro, y contenido bilingüe (EN/ES)."
+      "title": "Portfolio Personal",
+      "description": "Portfolio profesional moderno y responsive con terminal interactivo y soporte multiidioma.",
+      "longDescription": "Portfolio profesional desarrollado con las últimas tecnologías web. Incluye terminal interactivo, secciones animadas, modo oscuro/claro, internacionalización (ES/EN) y componentes UI reutilizables. Optimizado para SEO y rendimiento."
     },
-    "proyecto-1": {
-      "title": "Nombre Proyecto 1",
-      "description": "Descripción corta del proyecto (1-2 líneas)",
-      "longDescription": "Descripción detallada de qué hace el proyecto, qué problemas resuelve y características principales."
+
+    "los-inmaduros-rollers": {
+      "title": "Los Inmaduros Rollers Madrid",
+      "description": "Plataforma comunitaria para gestionar rutas de patinaje en Madrid con mapas interactivos.",
+      "longDescription": "Aplicación web para comunidad de patinadores con sistema de convocatorias de rutas, mapas interactivos con Google Maps API, gestión de favoritos, sistema de comentarios y autenticación con Clerk. Incluye visualización de recorridos populares y gestión de usuarios."
     },
-    "proyecto-2": {
-      "title": "Nombre Proyecto 2",
-      "description": "Descripción corta del proyecto (1-2 líneas)",
-      "longDescription": "Descripción detallada de qué hace el proyecto, qué problemas resuelve y características principales."
+
+    "cafe-de-altura": {
+      "title": "Café de Altura",
+      "description": "E-commerce de café premium con carrito funcional y gestión de productos.",
+      "longDescription": "Tienda online de café specialty con catálogo de productos, carrito de compra funcional, sistema de suscripciones y panel de contacto. Integración con MongoDB para gestión de inventario y pedidos."
     }
   },
   "contact": {

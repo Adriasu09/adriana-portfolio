@@ -104,21 +104,23 @@
   },
   "projects": {
     "title": "Featured Projects",
-    "viewAll": "View All Projects",
+
     "portfolio": {
-      "title": "Developer Portfolio",
-      "description": "Interactive terminal-themed portfolio built with Next.js 16, featuring modern animations and dark mode support.",
-      "longDescription": "A modern, responsive portfolio showcasing my work with an interactive terminal interface, complete dark/light mode support, and bilingual content (EN/ES)."
+      "title": "Personal Portfolio",
+      "description": "Modern and responsive professional portfolio with interactive terminal and multi-language support.",
+      "longDescription": "Professional portfolio built with cutting-edge web technologies. Features interactive terminal, animated sections, dark/light mode, internationalization (ES/EN), and reusable UI components. Optimized for SEO and performance."
     },
-    "proyecto-1": {
-      "title": "Project Name 1",
-      "description": "Short project description (1-2 lines)",
-      "longDescription": "Detailed description of what the project does, problems it solves, and main features."
+
+    "los-inmaduros-rollers": {
+      "title": "Los Inmaduros Rollers Madrid",
+      "description": "Community platform for managing roller skating routes in Madrid with interactive maps.",
+      "longDescription": "Web application for skaters community with route announcement system, interactive maps using Google Maps API, favorites management, comment system, and Clerk authentication. Includes popular routes visualization and user management."
     },
-    "proyecto-2": {
-      "title": "Project Name 2",
-      "description": "Short project description (1-2 lines)",
-      "longDescription": "Detailed description of what the project does, problems it solves, and main features."
+
+    "cafe-de-altura": {
+      "title": "Café de Altura",
+      "description": "Premium coffee e-commerce with functional cart and product management.",
+      "longDescription": "Specialty coffee online store with product catalog, functional shopping cart, subscription system, and contact panel. MongoDB integration for inventory and order management."
     }
   },
   "contact": {
