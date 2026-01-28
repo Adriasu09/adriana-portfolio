@@ -14,7 +14,7 @@ export function Section({
   return (
     <section
       className={cn(
-        "py-20 px-6 lg:px-20 scroll-mt-24",
+        "py-10 md:py-20 px-6 lg:px-20 scroll-mt-24",
         !fullWidth && "max-w-7xl mx-auto w-full",
         className,
       )}

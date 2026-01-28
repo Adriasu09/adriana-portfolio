@@ -27,7 +27,7 @@
       "skills": "Navigating to Skills section...",
       "projects": "Navigating to Projects section...",
       "contact": "Navigating to Contact section...",
-      "notFound": "Command not found: {command}. Type 'help' for available commands."
+      "notFound": "Command not found. Type 'help' for available commands."
     }
   },
   "about": {
@@ -40,7 +40,7 @@
         "label": "Years Experience"
       },
       "projects": {
-        "value": "10+",
+        "value": "3+",
         "label": "Projects Completed"
       },
       "technologies": {
@@ -127,7 +127,26 @@
     }
   },
   "contact": {
+    "subtitle": "05. What's next?",
     "title": "Get In Touch",
-    "subtitle": "I'm currently available for new opportunities and freelance projects"
+    "description": "My inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!",
+    "terminalTitle": "New Message — Contact.sh",
+    "form": {
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "your-email@example.com",
+      "messagePlaceholder": "Type your message here...",
+      "submit": "Execute Send",
+      "sending": "Sending...",
+      "success": "Message Sent!",
+      "error": "Send Failed",
+      "errors": {
+        "nameMin": "Name must be at least 2 characters",
+        "nameMax": "Name cannot exceed 50 characters",
+        "emailInvalid": "Please enter a valid email",
+        "emailRequired": "Email is required",
+        "messageMin": "Message must be at least 10 characters",
+        "messageMax": "Message cannot exceed 1000 characters"
+      }
+    }
   }
 }

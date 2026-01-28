@@ -27,7 +27,7 @@
       "skills": "Navegando a la sección de Habilidades...",
       "projects": "Navegando a la sección de Proyectos...",
       "contact": "Navegando a la sección de Contacto...",
-      "notFound": "Comando no encontrado: {command}. Escribe 'help' para ver comandos disponibles."
+      "notFound": "Comando no encontrado. Escribe 'help' para ver comandos disponibles."
     }
   },
   "about": {
@@ -40,7 +40,7 @@
         "label": "Años de Experiencia"
       },
       "projects": {
-        "value": "10+",
+        "value": "3+",
         "label": "Proyectos Completados"
       },
       "technologies": {
@@ -127,7 +127,26 @@
     }
   },
   "contact": {
-    "title": "Contacta Conmigo",
-    "subtitle": "Actualmente disponible para nuevas oportunidades y proyectos freelance"
+    "subtitle": "05. ¿Qué sigue?",
+    "title": "Ponte en Contacto",
+    "description": "Mi bandeja de entrada siempre está abierta. Ya sea que tengas una pregunta o solo quieras saludar, ¡haré todo lo posible por responderte!",
+    "terminalTitle": "Nuevo Mensaje — Contact.sh",
+    "form": {
+      "namePlaceholder": "Tu nombre",
+      "emailPlaceholder": "tu-email@ejemplo.com",
+      "messagePlaceholder": "Escribe tu mensaje aquí...",
+      "submit": "Ejecutar Envío",
+      "sending": "Enviando...",
+      "success": "¡Mensaje Enviado!",
+      "error": "Error al Enviar",
+      "errors": {
+        "nameMin": "El nombre debe tener al menos 2 caracteres",
+        "nameMax": "El nombre no puede exceder 50 caracteres",
+        "emailInvalid": "Por favor ingresa un email válido",
+        "emailRequired": "El email es requerido",
+        "messageMin": "El mensaje debe tener al menos 10 caracteres",
+        "messageMax": "El mensaje no puede exceder 1000 caracteres"
+      }
+    }
   }
 }
