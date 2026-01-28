@@ -148,5 +148,14 @@
         "messageMax": "El mensaje no puede exceder 1000 caracteres"
       }
     }
+  },
+  "footer": {
+    "description": "Desarrolladora Frontend & Fullstack especializada en crear aplicaciones web modernas, escalables y eficientes.",
+    "quickLinks": "Enlaces Rápidos",
+    "connect": "Conecta",
+    "availability": "Disponible para proyectos freelance",
+    "rights": "Todos los derechos reservados.",
+    "madeWith": "Hecho con",
+    "and": "y"
   }
 }

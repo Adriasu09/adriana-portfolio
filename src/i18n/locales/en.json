@@ -148,5 +148,14 @@
         "messageMax": "Message cannot exceed 1000 characters"
       }
     }
+  },
+  "footer": {
+    "description": "Frontend & Fullstack Developer specialized in creating modern, scalable and efficient web applications.",
+    "quickLinks": "Quick Links",
+    "connect": "Connect",
+    "availability": "Available for freelance projects",
+    "rights": "All rights reserved.",
+    "madeWith": "Made with",
+    "and": "and"
   }
 }
