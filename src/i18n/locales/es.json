@@ -104,7 +104,10 @@
   },
   "projects": {
     "title": "Proyectos Destacados",
-
+    "buttons": {
+      "viewRepo": "Código",
+      "viewLive": "Ver en Vivo"
+    },
     "portfolio": {
       "title": "Portfolio Personal",
       "description": "Portfolio profesional moderno y responsive con terminal interactivo y soporte multiidioma.",
