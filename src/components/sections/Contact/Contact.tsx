@@ -70,40 +70,40 @@ export function Contact() {
           </p>
         </div>
 
-        {/* Terminal Form */}
-        <div className="w-full bg-elevated rounded-2xl overflow-hidden border border-color shadow-xl">
-          {/* Terminal Header */}
-          <div className="bg-subtle px-4 py-3 border-b border-color flex items-center justify-between">
+        {/* Terminal Form - Forzar colores oscuros como el Hero */}
+        <div className="w-full rounded-2xl overflow-hidden border border-white/10 shadow-2xl bg-gray-900/95 backdrop-blur-sm">
+          {/* Terminal Header - Fondo oscuro fijo */}
+          <div className="bg-gray-800/50 px-4 py-3 border-b border-white/10 flex items-center justify-between">
             <div className="flex gap-2">
               <div className="w-3 h-3 rounded-full bg-red-500"></div>
               <div className="w-3 h-3 rounded-full bg-yellow-500"></div>
               <div className="w-3 h-3 rounded-full bg-green-500"></div>
             </div>
-            <span className="text-[10px] font-mono text-tertiary-color uppercase tracking-widest">
+            <span className="text-[10px] font-mono text-gray-400 uppercase tracking-widest">
               {t("contact.terminalTitle")}
             </span>
             <div className="hidden md:block md:w-12"></div>
           </div>
 
-          {/* Form */}
+          {/* Form - Texto blanco/gris fijo */}
           <form onSubmit={handleSubmit(onSubmit)} className="p-8 space-y-6">
             {/* Name Field */}
             <div className="space-y-2 text-left">
-              <div className="flex gap-2 text-tertiary-color text-sm uppercase font-mono">
+              <div className="flex gap-2 text-gray-400 text-sm uppercase font-mono">
                 <span>Contact:</span>
                 <span>Name</span>
               </div>
-              <div className="flex items-center gap-2 border-b border-color pb-2">
+              <div className="flex items-center gap-2 border-b border-white/20 pb-2">
                 <span className="text-primary font-mono">➜</span>
                 <input
                   {...register("name")}
                   type="text"
                   placeholder={t("contact.form.namePlaceholder")}
-                  className="flex-1 bg-transparent border-none p-0 focus:ring-0 text-primary-color placeholder:text-tertiary-color font-mono"
+                  className="flex-1 bg-transparent border-none p-0 focus:ring-0 text-white placeholder:text-gray-600 font-mono"
                 />
               </div>
               {errors.name && (
-                <p className="text-error text-xs font-mono flex items-center gap-1">
+                <p className="text-red-400 text-xs font-mono flex items-center gap-1">
                   <XCircle className="w-3 h-3" />
                   {errors.name.message}
                 </p>
@@ -112,21 +112,21 @@ export function Contact() {
 
             {/* Email Field */}
             <div className="space-y-2 text-left">
-              <div className="flex gap-2 text-tertiary-color text-sm uppercase font-mono">
+              <div className="flex gap-2 text-gray-400 text-sm uppercase font-mono">
                 <span>Contact:</span>
                 <span>Email</span>
               </div>
-              <div className="flex items-center gap-2 border-b border-color pb-2">
+              <div className="flex items-center gap-2 border-b border-white/20 pb-2">
                 <span className="text-primary font-mono">➜</span>
                 <input
                   {...register("email")}
                   type="email"
                   placeholder={t("contact.form.emailPlaceholder")}
-                  className="flex-1 bg-transparent border-none p-0 focus:ring-0 text-primary-color placeholder:text-tertiary-color font-mono"
+                  className="flex-1 bg-transparent border-none p-0 focus:ring-0 text-white placeholder:text-gray-600 font-mono"
                 />
               </div>
               {errors.email && (
-                <p className="text-error text-xs font-mono flex items-center gap-1">
+                <p className="text-red-400 text-xs font-mono flex items-center gap-1">
                   <XCircle className="w-3 h-3" />
                   {errors.email.message}
                 </p>
@@ -135,7 +135,7 @@ export function Contact() {
 
             {/* Message Field */}
             <div className="space-y-2 text-left">
-              <div className="flex gap-2 text-tertiary-color text-sm uppercase font-mono">
+              <div className="flex gap-2 text-gray-400 text-sm uppercase font-mono">
                 <span>Contact:</span>
                 <span>Message</span>
               </div>
@@ -145,11 +145,11 @@ export function Contact() {
                   {...register("message")}
                   rows={4}
                   placeholder={t("contact.form.messagePlaceholder")}
-                  className="flex-1 bg-transparent border-none p-0 focus:ring-0 text-primary-color placeholder:text-tertiary-color font-mono resize-none"
+                  className="flex-1 bg-transparent border-none p-0 focus:ring-0 text-white placeholder:text-gray-600 font-mono resize-none"
                 />
               </div>
               {errors.message && (
-                <p className="text-error text-xs font-mono flex items-center gap-1">
+                <p className="text-red-400 text-xs font-mono flex items-center gap-1">
                   <XCircle className="w-3 h-3" />
                   {errors.message.message}
                 </p>
@@ -179,7 +179,6 @@ export function Contact() {
             </button>
           </form>
         </div>
-
       </div>
     </Section>
   );
