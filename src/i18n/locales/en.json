@@ -104,7 +104,10 @@
   },
   "projects": {
     "title": "Featured Projects",
-
+    "buttons": {
+      "viewRepo": "Code",
+      "viewLive": "View Live"
+    },
     "portfolio": {
       "title": "Personal Portfolio",
       "description": "Modern and responsive professional portfolio with interactive terminal and multi-language support.",
