@@ -34,7 +34,7 @@ export function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...data,
-          language: i18n.language, // Añadir idioma actual
+          language: i18n.language,
         }),
       });
 
