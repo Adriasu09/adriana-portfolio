@@ -127,7 +127,18 @@
     }
   },
   "contact": {
+    "subtitle": "05. What's next?",
     "title": "Get In Touch",
-    "subtitle": "I'm currently available for new opportunities and freelance projects"
+    "description": "My inbox is always open. Whether you have a question or just want to say hi, I'll try my best to get back to you!",
+    "terminalTitle": "New Message — Contact.sh",
+    "form": {
+      "namePlaceholder": "Your name",
+      "emailPlaceholder": "your-email@example.com",
+      "messagePlaceholder": "Type your message here...",
+      "submit": "Execute Send",
+      "sending": "Sending...",
+      "success": "Message Sent!",
+      "error": "Send Failed"
+    }
   }
 }

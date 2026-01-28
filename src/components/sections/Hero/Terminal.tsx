@@ -17,6 +17,7 @@ export function Terminal() {
   const [showInput, setShowInput] = useState(false);
   const hasRunInitial = useRef(false);
   const currentLanguage = useRef(i18n.language);
+  const inputRef = useRef<HTMLInputElement>(null);
 
   const getHelpOutput = useCallback(
     () => (
@@ -213,6 +214,12 @@ export function Terminal() {
     const runInitialCommand = async () => {
       await new Promise((resolve) => setTimeout(resolve, 500));
       executeCommand("whoami", true);
+
+      setTimeout(() => {
+        if (inputRef.current) {
+          inputRef.current.focus({ preventScroll: true });
+        }
+      }, 3000);
     };
 
     runInitialCommand();
@@ -230,7 +237,7 @@ export function Terminal() {
           <div className="text-xs font-mono text-gray-400 uppercase tracking-widest">
             bash — adriana@portfolio
           </div>
-          <div className="w-14"></div>
+          <div className="hidden md:block md:w-14"></div>
         </div>
 
         <div className="p-6 font-mono text-sm min-h-80 max-h-100 overflow-y-auto">
@@ -250,12 +257,12 @@ export function Terminal() {
               <span className="text-primary">➜</span>
               <span className="text-accent">~</span>
               <input
+                ref={inputRef}
                 type="text"
                 value={currentInput}
                 onChange={(e) => setCurrentInput(e.target.value)}
                 className="flex-1 bg-transparent border-none outline-none text-white placeholder:text-gray-600"
                 placeholder={t("terminal.placeholder")}
-                autoFocus
               />
               <span className="w-2 h-5 bg-white/60 animate-pulse"></span>
             </form>

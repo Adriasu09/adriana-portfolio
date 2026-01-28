@@ -127,7 +127,18 @@
     }
   },
   "contact": {
-    "title": "Contacta Conmigo",
-    "subtitle": "Actualmente disponible para nuevas oportunidades y proyectos freelance"
+    "subtitle": "05. ¿Qué sigue?",
+    "title": "Ponte en Contacto",
+    "description": "Mi bandeja de entrada siempre está abierta. Ya sea que tengas una pregunta o solo quieras saludar, ¡haré todo lo posible por responderte!",
+    "terminalTitle": "Nuevo Mensaje — Contact.sh",
+    "form": {
+      "namePlaceholder": "Tu nombre",
+      "emailPlaceholder": "tu-email@ejemplo.com",
+      "messagePlaceholder": "Escribe tu mensaje aquí...",
+      "submit": "Ejecutar Envío",
+      "sending": "Enviando...",
+      "success": "¡Mensaje Enviado!",
+      "error": "Error al Enviar"
+    }
   }
 }

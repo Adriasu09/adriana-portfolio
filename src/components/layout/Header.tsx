@@ -58,14 +58,17 @@ export function Header() {
     >
       <div className="max-w-7xl mx-auto px-6 h-16 flex items-center justify-between">
         {/* Logo */}
-        <Link href="/" className="flex items-center gap-3 group">
+        <button
+          onClick={() => window.scrollTo({ top: 0, behavior: "smooth" })}
+          className="flex items-center gap-3 group cursor-pointer"
+        >
           <div className="p-2 bg-primary rounded-lg text-white transition-transform group-hover:scale-110">
             <Terminal className="w-5 h-5" />
           </div>
           <h1 className="font-mono text-xl font-bold tracking-tight text-primary-color">
             NANA_DEV
           </h1>
-        </Link>
+        </button>
 
         {/* Navigation */}
         <nav className="hidden md:flex items-center gap-8">
