@@ -12,6 +12,7 @@ export interface Project {
 }
 
 export const projects: Project[] = [
+  // PROYECTO DESTACADO (Portfolio)
   {
     id: "portfolio",
     title: "",
@@ -25,29 +26,44 @@ export const projects: Project[] = [
       "i18next",
     ],
     githubUrl: "https://github.com/Adriasu09/adriana-portfolio",
-    liveUrl: "https://adriana-portfolio-blue.vercel.app/",
+    image: "/images/projects/adriana_portfolio.png",
+    liveUrl: "https://adriana-portfolio.vercel.app",
     featured: true,
     category: "web-app",
   },
+
+  // Los Inmaduros Rollers Madrid (Proyecto Final Bootcamp)
   {
-    id: "proyecto-1",
+    id: "los-inmaduros-rollers",
     title: "",
     description: "",
     longDescription: "",
-    technologies: ["React", "TypeScript", "Tailwind CSS", "Next.js"],
-    image: "/images/projects/proyecto-1.jpg",
-    githubUrl: "https://github.com/Adriasu09/proyecto-1",
-    liveUrl: "https://proyecto-1.vercel.app",
+    technologies: [
+      "Next.js",
+      "React",
+      "Tailwind CSS",
+      "Firebase",
+      "Clerk",
+      "Google Maps API",
+    ],
+    githubUrl: "https://github.com/Adriasu/los-inmaduros-rollers-madrid",
+    image: "/images/projects/los_inmaduros_roller_madrid.png",
+    liveUrl: "https://los-inmaduros-rollers-madrid.vercel.app",
     featured: true,
     category: "web-app",
   },
+
+  // Café de Altura (E-commerce)
   {
-    id: "proyecto-2",
+    id: "cafe-de-altura",
     title: "",
     description: "",
-    technologies: ["React", "Node.js", "PostgreSQL"],
-    githubUrl: "https://github.com/Adriasu09/proyecto-2",
-    featured: false,
+    longDescription: "",
+    technologies: ["Next.js", "React", "MongoDB", "Tailwind CSS", "shadcn/ui"],
+    githubUrl: "https://github.com/Adriasu/cafe-de-altura",
+    image: "/images/projects/cafe_de_altura.png",
+    liveUrl: "https://cafe-de-altura-lovat.vercel.app",
+    featured: true,
     category: "web-app",
   },
 ];

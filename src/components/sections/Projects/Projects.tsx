@@ -32,7 +32,7 @@ export function Projects() {
                     src={project.image}
                     alt={project.title}
                     fill
-                    className="object-cover opacity-20 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700"
+                    className="object-cover opacity-30 group-hover:opacity-30 group-hover:scale-105 transition-all duration-700"
                   />
                 </div>
               )}
