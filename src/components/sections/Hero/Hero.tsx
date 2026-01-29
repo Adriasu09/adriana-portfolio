@@ -25,10 +25,10 @@ export function Hero() {
   return (
     <section className="min-h-screen flex flex-col items-center justify-center px-6 py-20">
       <div className="text-center mb-12 space-y-4">
-        <h2 className="text-4xl md:text-6xl font-black tracking-tight text-primary-color">
+        <h1 className="text-4xl md:text-6xl font-black tracking-tight text-primary-color">
           {t("hero.title")}{" "}
           <span className="text-primary">{t("hero.titleAccent")}</span>
-        </h2>
+        </h1>
         <p className="text-lg text-secondary-color max-w-2xl mx-auto">
           {t("hero.subtitle")}
         </p>
