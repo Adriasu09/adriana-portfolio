@@ -51,12 +51,6 @@ export async function POST(request: Request) {
       html: confirmationEmailHtml,
     });
 
-    console.log("Emails sent successfully:", {
-      notification: notificationEmail,
-      confirmation: confirmationResponse,
-      language,
-    });
-
     return NextResponse.json(
       {
         message: "Message sent successfully",
