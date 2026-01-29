@@ -18,6 +18,10 @@ export const metadata: Metadata = {
   title: "Adriana Suárez | Frontend & Fullstack Developer",
   description:
     "Portfolio showcasing frontend and fullstack development projects with React, Next.js, TypeScript, and Node.js",
+  icons: {
+    icon: "/favicon.svg",
+    shortcut: "/favicon.svg",
+  },
 };
 
 export default function RootLayout({
