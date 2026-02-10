@@ -12,6 +12,13 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
+    // 🔍 LOGS DE DIAGNÓSTICO - BORRAR DESPUÉS
+    console.log("📦 Body received:", JSON.stringify(body, null, 2));
+    console.log("📦 Language type:", typeof body.language);
+    console.log("📦 Language value:", body.language);
+    console.log("📦 Language === 'es':", body.language === "es");
+    console.log("📦 Language === 'en':", body.language === "en");
+
     // Validar datos
     const t = (key: string) => key;
     const validatedData = getContactFormSchema(t).parse(body);
