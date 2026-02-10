@@ -14,7 +14,10 @@ export const getContactFormSchema = (t: (key: string) => string) => {
       .string()
       .min(10, t("contact.form.errors.messageMin"))
       .max(1000, t("contact.form.errors.messageMax")),
-    language: z.enum(["es", "en"]).optional(),
+    language: z
+      .union([z.literal("es"), z.literal("en")])
+      .optional()
+      .default("es"),
   });
 };
 
