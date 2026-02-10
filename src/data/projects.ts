@@ -27,7 +27,7 @@ export const projects: Project[] = [
     ],
     githubUrl: "https://github.com/Adriasu09/adriana-portfolio",
     image: "/images/projects/adriana_portfolio.png",
-    liveUrl: "https://adriana-portfolio.vercel.app",
+    liveUrl: "https://adriana-portfolio-blue.vercel.app",
     featured: true,
     category: "web-app",
   },
