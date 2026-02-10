@@ -28,7 +28,7 @@ export function Contact() {
       name: "",
       email: "",
       message: "",
-      language: (i18n.language === "en" ? "en" : "es") as "es" | "en",
+      language: i18n.language.startsWith("en") ? "en" : "es", 
     },
   });
   const onSubmit = async (data: ContactFormData) => {
