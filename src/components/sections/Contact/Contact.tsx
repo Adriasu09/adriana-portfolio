@@ -32,8 +32,6 @@ export function Contact() {
     },
   });
   const onSubmit = async (data: ContactFormData) => {
-    console.log("click");
-
     setStatus("loading");
 
     try {
@@ -42,7 +40,7 @@ export function Contact() {
         headers: { "Content-Type": "application/json" },
         body: JSON.stringify({
           ...data,
-          language: i18n.language,
+          language: i18n.language.startsWith("en") ? "en" : "es",
         }),
       });
 
