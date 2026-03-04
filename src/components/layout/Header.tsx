@@ -15,7 +15,7 @@ export function Header() {
 
   const handleDownloadCV = () => {
     const link = document.createElement("a");
-    link.href = "/cv/CV_Adriana_Suarez_2026.pdf";
+    link.href = "/cv/CV_Adriana_Suarez_2026_v2.pdf";
     link.download = "CV_Adriana_Suarez.pdf";
     link.click();
   };

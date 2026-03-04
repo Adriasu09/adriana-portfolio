@@ -6,7 +6,7 @@ export const SITE_CONFIG = {
     name: "Adriana",
     email: "adsuarez09@gmail.com",
     github: "https://github.com/Adriasu09",
-    linkedin: "www.linkedin.com/in/adriana-suárez-4562a5249",
+    linkedin: "www.linkedin.com/in/adriana-suarez-colmenares",
   },
   nav: [
     { name: "About", href: "#about" },
