@@ -22,7 +22,6 @@ export const projects: Project[] = [
       "Next.js 16",
       "TypeScript",
       "Tailwind CSS v4",
-      "Framer Motion",
       "i18next",
     ],
     githubUrl: "https://github.com/Adriasu09/adriana-portfolio",

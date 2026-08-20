@@ -26,11 +26,6 @@ export const skills: Skill[] = [
     level: 75,
     category: "frontend",
   },
-  {
-    name: "Framer Motion",
-    level: 70,
-    category: "frontend",
-  },
 
   // Backend
   {
