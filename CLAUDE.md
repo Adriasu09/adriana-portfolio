@@ -90,7 +90,9 @@ reintroduced:
 
 ## Conventions
 
-- **Language:** all code, comments, commit messages and repo docs in English.
+- **Language:** all code, comments, commit messages and public-facing docs
+  (`README.md`) in English. `docs/audit/` and `docs/plans/` are internal working
+  documents written in **Spanish** — that is deliberate, not an oversight.
 - **Server first:** components are React Server Components by default. Add `"use client"` only when the component needs state, effects, browser APIs or event handlers. Push the boundary as far down the tree as possible.
 - **Styling:** Tailwind utility classes only. Merge conditional classes with the `cn()` helper (`clsx` + `tailwind-merge`); do not concatenate class strings manually. Design tokens live in the Tailwind v4 CSS config, not as hardcoded hex values in components.
 - **Validation:** every form and every API route input is validated with a Zod schema from `src/lib/validations/`. Types are derived with `z.infer`, never duplicated by hand.
@@ -190,9 +192,46 @@ only. This outranks every other issue here.
     loads two ~1 MB PNGs of the same face with `priority` for an
     `lg:`-only hover effect; `public/images/avatar.jpg` (1.2 MB) is never
     referenced.
+    **Magnitude corrected by measurement** ([`network-2026-08-20.md`](docs/audit/network-2026-08-20.md)):
+    `next/image` serves those PNGs as ~32 kB WebP, so the pair costs **63.6 kB
+    transferred, not ~2 MB**. The defect stands; the number does not. Both still
+    download below `lg`, the `hidden lg:block` one included. The missing `sizes`
+    is currently **latent** — Next requests a `w=1200` variant on a 390 px phone
+    and only the 768 px source width caps the waste, so **raising the source
+    resolution without adding `sizes` would make things worse, not better.**
 14. **Dead code.** `lib/animations.ts` and `types/index.ts` are empty files;
     `lib/constants.ts` is never imported and contains a wrong production URL
     and a LinkedIn handle that disagrees with `Footer.tsx:28`.
+
+### Found during the Phase 0 measurements (18-20 August 2026)
+
+Each entry links to the report that measured it. Reports live in `docs/audit/`.
+
+15. **Colour contrast fails 39 times, and it is two design tokens, not 39 bugs**
+    ([`axe-2026-08-19.md`](docs/audit/axe-2026-08-19.md)). All 39 are one axe
+    rule, `color-contrast` (WCAG 1.4.3 AA), severity serious. The brand purple
+    `#7209b7` fails against both backgrounds it is used on — 2.29 on `#0a0a0f`
+    and 1.97 on `#271239` — including 36 px and 60 px bold headings, where the
+    threshold drops to 3:1. The muted grey `#64748b` misses 4.5:1 by 0.35.
+16. **Six `aria-label` values are English on Spanish buttons**
+    ([`axe-2026-08-19.md`](docs/audit/axe-2026-08-19.md)). `ProjectCard.tsx:50`
+    and `:62` set `View on GitHub` / `View live demo` while the visible text is
+    Spanish, breaking WCAG 2.5.3 (Label in Name, level A): voice navigation
+    cannot match a spoken visible label to a different accessible name. Detected
+    only when axe's experimental rules are enabled; Lighthouse reports it by
+    default.
+17. **The favicon is downloaded twice**
+    ([`network-2026-08-20.md`](docs/audit/network-2026-08-20.md)).
+    `layout.tsx:21-24` declares `/web.png` as both `icon` and `shortcut`, which
+    emits two `<link>` tags for one file: 24.5 kB, more than the CSS and the HTML
+    together.
+18. **`zod` is 24.5 % of the client bundle**
+    ([`bundle-2026-08-20.md`](docs/audit/bundle-2026-08-20.md)). 260.7 KB
+    uncompressed to validate a three-field contact form, and 70 % of the largest
+    chunk — the same chunk production transfers as 101 kB, the heaviest single
+    asset on the page. By contrast `lucide-react` is 4.3 KB: **module counts do
+    not predict weight**, so do not use the module table in §1 of the baseline
+    to prioritise this work.
 
 ### Checked and found NOT to be a problem
 
