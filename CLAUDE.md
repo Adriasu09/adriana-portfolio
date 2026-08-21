@@ -225,13 +225,17 @@ Each entry links to the report that measured it. Reports live in `docs/audit/`.
     `layout.tsx:21-24` declares `/web.png` as both `icon` and `shortcut`, which
     emits two `<link>` tags for one file: 24.5 kB, more than the CSS and the HTML
     together.
-18. **`zod` is 24.5 % of the client bundle**
+18. **`zod` is 24.5 % of the client bundle, and over half of that is locales**
     ([`bundle-2026-08-20.md`](docs/audit/bundle-2026-08-20.md)). 260.7 KB
     uncompressed to validate a three-field contact form, and 70 % of the largest
     chunk — the same chunk production transfers as 101 kB, the heaviest single
-    asset on the page. By contrast `lucide-react` is 4.3 KB: **module counts do
-    not predict weight**, so do not use the module table in §1 of the baseline
-    to prioritise this work.
+    asset on the page. **139.42 KB of it (53.5 % of `zod`, 13.1 % of the whole
+    bundle) is `locales`: error messages in ~40 languages, where the site serves
+    two.** Same defect as `flag-icons` in the CSS — the whole package imported to
+    use a fraction — so treat them as one problem, not two.
+    By contrast `lucide-react` is 4.3 KB: **module counts do not predict
+    weight**, so do not use the module table in §1 of the baseline to prioritise
+    this work.
 
 ### Checked and found NOT to be a problem
 
