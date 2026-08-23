@@ -34,7 +34,7 @@ export async function POST(request: Request) {
     const confirmationEmailHtml = await render(ConfirmationEmail({ name }));
 
     // EMAIL 1: Enviar a ti (notificación del mensaje) - siempre en español
-    const notificationEmail = await resend.emails.send({
+    await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: ["adsuarez09@gmail.com"],
       replyTo: email,
@@ -43,7 +43,7 @@ export async function POST(request: Request) {
     });
 
     // EMAIL 2: Enviar al usuario (confirmación automática) - en su idioma
-    const confirmationResponse = await resend.emails.send({
+    await resend.emails.send({
       from: "Adriana Suárez <onboarding@resend.dev>",
       to: [email],
       replyTo: "adsuarez09@gmail.com",
@@ -52,10 +52,7 @@ export async function POST(request: Request) {
     });
 
     return NextResponse.json(
-      {
-        message: "Message sent successfully",
-        data: { notificationEmail, confirmationResponse },
-      },
+      { message: "Message sent successfully" },
       { status: 200 },
     );
   } catch (error) {
