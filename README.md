@@ -29,15 +29,16 @@ confirmation emails, and a light/dark theme. It is deployed on Vercel at
 ### Dependencies
 
 - **Node.js 20 or later** — required by Next.js 16
-- **npm** — the repository ships a `package-lock.json`; mixing package managers
-  breaks reproducible installs
+- **pnpm** — the repository ships a `pnpm-lock.yaml` and pins the exact pnpm
+  version in `packageManager`; mixing package managers breaks reproducible
+  installs
 
 ### Setup
 
 ```bash
 git clone https://github.com/Adriasu09/adriana-portfolio.git
 cd adriana-portfolio
-npm install
+pnpm install
 cp .env.example .env.local
 ```
 
@@ -53,10 +54,11 @@ Without the key the site runs, but submitting the contact form fails.
 ## Usage
 
 ```bash
-npm run dev      # development server on http://localhost:3000
-npm run build    # production build
-npm run start    # serve the production build
-npm run lint     # ESLint
+pnpm dev        # development server on http://localhost:3000
+pnpm build      # production build
+pnpm start      # serve the production build
+pnpm lint       # ESLint
+pnpm typecheck  # tsc --noEmit
 ```
 
 ## Features
