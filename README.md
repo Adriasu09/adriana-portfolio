@@ -165,7 +165,7 @@ project. It is never committed: `.env.example` holds the key name and no value.
 [Adriana Suárez](https://github.com/Adriasu09)
 
 - **Email:** adsuarez09@gmail.com
-- **LinkedIn:** [Adriana Suárez](https://www.linkedin.com/in/adriana-su%C3%A1rez-4562a5249/)
+- **LinkedIn:** [Adriana Suárez](https://www.linkedin.com/in/adriana-suarez-colmenares/)
 
 ## Contributing
 
