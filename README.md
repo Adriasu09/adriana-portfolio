@@ -28,7 +28,8 @@ confirmation emails, and a light/dark theme. It is deployed on Vercel at
 
 ### Dependencies
 
-- **Node.js 20 or later** — required by Next.js 16
+- **Node.js 24.x** — pinned in `engines` and matching the version Vercel builds
+  with; Next.js 16 itself only requires 20 or later
 - **pnpm** — the repository ships a `pnpm-lock.yaml` and pins the exact pnpm
   version in `packageManager`; mixing package managers breaks reproducible
   installs
