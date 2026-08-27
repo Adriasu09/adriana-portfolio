@@ -236,6 +236,13 @@ Each entry links to the report that measured it. Reports live in `docs/audit/`.
     By contrast `lucide-react` is 4.3 KB: **module counts do not predict
     weight**, so do not use the module table in §1 of the baseline to prioritise
     this work.
+    **Investigated on 2026-08-24 (card 1.13) and closed with no code change** —
+    [`zod-locales-2026-08-24.md`](docs/audit/zod-locales-2026-08-24.md).
+    `zod/mini`, `zod/v4/core`, upgrading to 4.4.3 and
+    `experimental.optimizePackageImports` all leave every locale in the bundle:
+    the cause is `export * as locales` inside the package itself, which no
+    bundler can prove is unreachable. Do not re-investigate without new
+    information — recheck only if `zod` replaces that re-export.
 
 ### Checked and found NOT to be a problem
 
