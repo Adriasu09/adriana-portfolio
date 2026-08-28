@@ -12,13 +12,13 @@ export async function POST(request: Request) {
   try {
     const body = await request.json();
 
-    // Validar datos
+    // The schema expects a translator for its error messages. On the server
+    // those messages never reach the visitor, so returning the key is enough.
     const t = (key: string) => key;
     const validatedData = getContactFormSchema(t).parse(body);
 
     const { name, email, message, language = "es" } = validatedData;
 
-    // Seleccionar template según idioma
     const ConfirmationEmail =
       language === "en" ? ConfirmationEmailEN : ConfirmationEmailES;
 
@@ -27,14 +27,17 @@ export async function POST(request: Request) {
         ? "Thank you for reaching out! I'll get back to you soon"
         : "¡Gracias por contactarme! Te responderé pronto";
 
-    // Renderizar emails
     const contactEmailHtml = await render(
       ContactEmail({ name, email, message }),
     );
     const confirmationEmailHtml = await render(ConfirmationEmail({ name }));
 
-    // EMAIL 1: Enviar a ti (notificación del mensaje) - siempre en español
-    await resend.emails.send({
+    // Resend reports failures in the returned object instead of throwing, so
+    // the catch below never sees them. Both results have to be checked.
+
+    // Notification to the site owner. Always Spanish, regardless of the
+    // visitor's language.
+    const notification = await resend.emails.send({
       from: "Portfolio Contact <onboarding@resend.dev>",
       to: ["adsuarez09@gmail.com"],
       replyTo: email,
@@ -42,8 +45,21 @@ export async function POST(request: Request) {
       html: contactEmailHtml,
     });
 
-    // EMAIL 2: Enviar al usuario (confirmación automática) - en su idioma
-    await resend.emails.send({
+    // This one carries the message itself: if it fails, nothing arrived and the
+    // visitor needs to know so they can try again.
+    if (notification.error) {
+      console.error("contact_notification_failed", {
+        name: notification.error.name,
+        statusCode: notification.error.statusCode,
+      });
+      return NextResponse.json(
+        { error: "Failed to send message" },
+        { status: 500 },
+      );
+    }
+
+    // Courtesy confirmation to the visitor, in their own language.
+    const confirmation = await resend.emails.send({
       from: "Adriana Suárez <onboarding@resend.dev>",
       to: [email],
       replyTo: "adsuarez09@gmail.com",
@@ -51,16 +67,29 @@ export async function POST(request: Request) {
       html: confirmationEmailHtml,
     });
 
+    // The message already got through, so a failure here is logged but not
+    // reported: telling the visitor it failed would make them send it twice.
+    if (confirmation.error) {
+      console.error("contact_confirmation_failed", {
+        name: confirmation.error.name,
+        statusCode: confirmation.error.statusCode,
+      });
+    }
+
     return NextResponse.json(
       { message: "Message sent successfully" },
       { status: 200 },
     );
   } catch (error) {
-    console.error("Contact form error:", error);
-
+    // A validation failure is a badly filled form, not a server fault: it is
+    // answered but not logged, so the log keeps only real failures.
     if (error instanceof Error && error.name === "ZodError") {
       return NextResponse.json({ error: "Invalid form data" }, { status: 400 });
     }
+
+    console.error("contact_request_failed", {
+      name: error instanceof Error ? error.name : "unknown",
+    });
 
     return NextResponse.json(
       { error: "Failed to send message" },
