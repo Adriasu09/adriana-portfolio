@@ -8,8 +8,21 @@ import { ConfirmationEmailES } from "@/emails/ConfirmationEmail.es";
 
 const resend = new Resend(process.env.RESEND_API_KEY);
 
+const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL;
+const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL;
+
 export async function POST(request: Request) {
   try {
+    // Checked per request, not at module load: a throw at import time would
+    // break `next build`, which evaluates route modules.
+    if (!CONTACT_TO_EMAIL || !CONTACT_FROM_EMAIL) {
+      console.error("contact_config_missing");
+      return NextResponse.json(
+        { error: "Failed to send message" },
+        { status: 500 },
+      );
+    }
+
     const body = await request.json();
 
     // The schema expects a translator for its error messages. On the server
@@ -38,8 +51,8 @@ export async function POST(request: Request) {
     // Notification to the site owner. Always Spanish, regardless of the
     // visitor's language.
     const notification = await resend.emails.send({
-      from: "Portfolio Contact <onboarding@resend.dev>",
-      to: ["adsuarez09@gmail.com"],
+      from: `Portfolio Contact <${CONTACT_FROM_EMAIL}>`,
+      to: [CONTACT_TO_EMAIL],
       replyTo: email,
       subject: `Nuevo mensaje de ${name} desde tu Portfolio`,
       html: contactEmailHtml,
@@ -60,9 +73,9 @@ export async function POST(request: Request) {
 
     // Courtesy confirmation to the visitor, in their own language.
     const confirmation = await resend.emails.send({
-      from: "Adriana Suárez <onboarding@resend.dev>",
+      from: `Adriana Suárez <${CONTACT_FROM_EMAIL}>`,
       to: [email],
-      replyTo: "adsuarez09@gmail.com",
+      replyTo: CONTACT_TO_EMAIL,
       subject: confirmationSubject,
       html: confirmationEmailHtml,
     });
