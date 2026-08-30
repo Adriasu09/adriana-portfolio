@@ -43,14 +43,19 @@ pnpm install
 cp .env.example .env.local
 ```
 
-The contact form needs a [Resend](https://resend.com) API key. Add it to
-`.env.local`:
+The contact form needs a [Resend](https://resend.com) API key and the two
+addresses it sends from and to. Add them to `.env.local`:
 
 ```
 RESEND_API_KEY=re_your_api_key_here
+CONTACT_TO_EMAIL=you@example.com
+CONTACT_FROM_EMAIL=onboarding@resend.dev
 ```
 
-Without the key the site runs, but submitting the contact form fails.
+All three are server-side only. Prefixing them with `NEXT_PUBLIC_` would embed
+them in the client bundle at build time, where anyone can read them.
+
+Without them the site runs, but submitting the contact form fails.
 
 ## Usage
 
@@ -157,8 +162,9 @@ Deployed on Vercel.
 
 - **Production:** [adriana-portfolio-blue.vercel.app](https://adriana-portfolio-blue.vercel.app/)
 
-`RESEND_API_KEY` must be configured as an environment variable in the Vercel
-project. It is never committed: `.env.example` holds the key name and no value.
+`RESEND_API_KEY`, `CONTACT_TO_EMAIL` and `CONTACT_FROM_EMAIL` must be configured
+as environment variables in the Vercel project, for both Production and Preview.
+They are never committed: `.env.example` holds the names and no values.
 
 ## Maintainers
 
