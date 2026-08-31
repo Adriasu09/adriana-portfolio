@@ -11,6 +11,28 @@ const resend = new Resend(process.env.RESEND_API_KEY);
 const CONTACT_TO_EMAIL = process.env.CONTACT_TO_EMAIL;
 const CONTACT_FROM_EMAIL = process.env.CONTACT_FROM_EMAIL;
 
+const RATE_LIMIT_WINDOW_MS = 10 * 60 * 1000;
+const RATE_LIMIT_MAX = 5;
+const submissions = new Map<string, number[]>();
+
+function isRateLimited(ip: string): boolean {
+  const now = Date.now();
+  const cutoff = now - RATE_LIMIT_WINDOW_MS;
+
+  // Expired entries are dropped on every call so the map cannot grow unbounded.
+  for (const [key, times] of submissions) {
+    const recent = times.filter((time) => time > cutoff);
+    if (recent.length === 0) submissions.delete(key);
+    else submissions.set(key, recent);
+  }
+
+  const times = submissions.get(ip) ?? [];
+  if (times.length >= RATE_LIMIT_MAX) return true;
+
+  submissions.set(ip, [...times, now]);
+  return false;
+}
+
 export async function POST(request: Request) {
   try {
     // Checked per request, not at module load: a throw at import time would
@@ -39,6 +61,21 @@ export async function POST(request: Request) {
     const host = request.headers.get("host");
     if (origin && origin !== `https://${host}` && origin !== `http://${host}`) {
       return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
+    // The IP is personal data. It is used as an in-memory key and never logged.
+    const ip =
+      request.headers.get("x-forwarded-for")?.split(",")[0].trim() ?? "unknown";
+
+    if (isRateLimited(ip)) {
+      console.warn("contact_rate_limited");
+      return NextResponse.json(
+        { error: "Too many requests" },
+        {
+          status: 429,
+          headers: { "Retry-After": String(RATE_LIMIT_WINDOW_MS / 1000) },
+        },
+      );
     }
 
     const body = await request.json();
