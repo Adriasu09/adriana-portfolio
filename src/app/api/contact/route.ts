@@ -23,12 +23,40 @@ export async function POST(request: Request) {
       );
     }
 
+    // The form always posts JSON. Anything else did not come from it.
+    if (!request.headers.get("content-type")?.includes("application/json")) {
+      return NextResponse.json(
+        { error: "Unsupported media type" },
+        { status: 415 },
+      );
+    }
+
+    // Origin is set by the browser and cannot be forged from a page's own
+    // JavaScript, so this stops a form embedded on another site. It is not a
+    // real defence: a script can simply omit the header, which is why a missing
+    // Origin is allowed through.
+    const origin = request.headers.get("origin");
+    const host = request.headers.get("host");
+    if (origin && origin !== `https://${host}` && origin !== `http://${host}`) {
+      return NextResponse.json({ error: "Forbidden" }, { status: 403 });
+    }
+
     const body = await request.json();
 
     // The schema expects a translator for its error messages. On the server
     // those messages never reach the visitor, so returning the key is enough.
     const t = (key: string) => key;
     const validatedData = getContactFormSchema(t).parse(body);
+
+    // Honeypot: only an automated client fills a field nobody can see.
+    // Answering 200 costs nothing and tells the bot nothing.
+    if (validatedData.subject) {
+      console.warn("contact_honeypot_triggered");
+      return NextResponse.json(
+        { message: "Message sent successfully" },
+        { status: 200 },
+      );
+    }
 
     const { name, email, message, language = "es" } = validatedData;
 

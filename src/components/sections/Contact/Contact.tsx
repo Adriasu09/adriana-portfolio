@@ -25,10 +25,11 @@ export function Contact() {
   } = useForm<ContactFormData>({
     resolver: zodResolver(getContactFormSchema(t)),
     defaultValues: {
+      subject: "",
       name: "",
       email: "",
       message: "",
-      language: i18n.language.startsWith("en") ? "en" : "es", 
+      language: i18n.language.startsWith("en") ? "en" : "es",
     },
   });
   const onSubmit = async (data: ContactFormData) => {
@@ -92,7 +93,23 @@ export function Contact() {
           </div>
 
           {/* Form - Texto blanco/gris fijo */}
-          <form onSubmit={handleSubmit(onSubmit)} className="p-8 space-y-6">
+          <form
+            onSubmit={handleSubmit(onSubmit)}
+            className="relative p-8 space-y-6"
+          >
+            {/* Honeypot. People never see this field; bots fill every input
+                they find in the HTML. A filled value means the submission is
+                automated — the route discards it silently. */}
+            <div className="absolute -left-2499.75 top-0" aria-hidden="true">
+              <label htmlFor="subject">Subject</label>
+              <input
+                {...register("subject")}
+                id="subject"
+                type="text"
+                tabIndex={-1}
+                autoComplete="off"
+              />
+            </div>
             {/* Name Field */}
             <div className="space-y-2 text-left">
               <div className="flex gap-2 text-gray-400 text-sm uppercase font-mono">
