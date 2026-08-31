@@ -112,7 +112,7 @@ The rules above are the target. Measured state of the code today:
 | Convention | Status |
 |---|---|
 | Language: English | ⚠️ Spanish inline comments remain in `data/projects.ts`, `Contact.tsx` and `validations/contact.ts`. `api/contact/route.ts` was translated in Phase 1 |
-| Server first | ❌ **13 of 23 `.tsx` files are `"use client"`** (re-counted 2026-08-31). 6 of them (About, Experience, Skills, Projects, Footer, and mostly Hero) only because they call `useTranslation` |
+| Server first | ❌ **14 of 23 `.tsx` files are `"use client"`** (re-counted 2026-08-31; 23 excludes the three `emails/` templates). 6 of them (About, Experience, Skills, Projects, Footer, and mostly Hero) only because they call `useTranslation` |
 | `cn()` for conditional classes | ⚠️ Used in Badge, Button, Card, Section, LanguageToggle. **`Header.tsx:53-57` concatenates a template literal instead** |
 | Design tokens, no hardcoded colours | ⚠️ No hex literals anywhere ✅, but `Contact.tsx` (21×) and `Terminal.tsx` (15×) bypass the tokens with raw `gray-*`/`red-*`/`white/10` utilities |
 | Zod on every form and API input | ✅ Met — both use `getContactFormSchema` from `lib/validations/` |
@@ -158,8 +158,9 @@ only. This outranks every other issue here.
 4. **`<html lang="en">` is hardcoded in `layout.tsx:33`** while the site serves
    Spanish and English. Nothing updates it on language change — `LanguageToggle`
    only calls `i18n.changeLanguage()`.
-5. **Too many components are client components** — 13 of 23 `.tsx` files as of
-   2026-08-31. Six are client-only because they call `useTranslation`, nothing
+5. **Too many components are client components** — 14 of 23 `.tsx` files as of
+   2026-08-31 (23 excludes the three `emails/` templates, which are not app
+   components). Six are client-only because they call `useTranslation`, nothing
    else. See the per-file breakdown in the audit.
 6. **No tests, no error boundaries, no analytics.** No test framework
    installed; no `error.tsx`, `global-error.tsx`, `not-found.tsx` or
