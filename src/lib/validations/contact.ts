@@ -1,5 +1,7 @@
 import { z } from "zod";
 
+z.config({ jitless: true });
+
 // Schema base sin traducciones (para inferir tipos correctamente)
 export const contactFormSchema = z.object({
   name: z.string().min(2).max(50),
