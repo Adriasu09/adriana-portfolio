@@ -2,9 +2,14 @@
 
 Guidance for Claude Code when working in this repository.
 
-> **Status:** verified against the source tree on 2026-08-11. Every factual section below (Structure, Stack, Known issues) now matches the code. Measurements and full evidence: [`docs/audit/baseline-2026-08-11.md`](docs/audit/baseline-2026-08-11.md).
+> **Status:** verified against the source tree on **2026-08-31**, after Phase 1
+> shipped to production. Measurements and evidence: [`docs/audit/`](docs/audit/).
 >
-> **Target vs. current state.** The *Commands*, *Conventions*, *Security rules*, *Hard rules* and *Before finishing any task* sections describe the **target** state this refactor is moving towards, not what the repo does today. Notably: the repo still uses **npm** (`package-lock.json`; the pnpm migration is task 1), and there is no `typecheck` or `test` script yet. Those sections are deliberately left as written — they are the goal.
+> **Target vs. current state.** The *Conventions*, *Security rules* and *Hard
+> rules* sections describe the **target** this refactor is moving towards. Phase
+> 1 closed the gap on tooling and on the contact endpoint: `pnpm`, the
+> `typecheck` script and the security headers are real now. There is still no
+> `test` script — that is Phase 5.
 
 ## Project
 
@@ -39,11 +44,11 @@ pnpm 10 blocks dependency lifecycle scripts by default. If a package legitimatel
 | Runtime | React 19.2.3 |
 | Language | TypeScript 5 |
 | Styling | Tailwind CSS v4 (`@tailwindcss/postcss`) |
-| Animation | ~~Framer Motion 12~~ — **declared in `package.json` but never imported.** All animation today is CSS/Tailwind transitions. Either use it or drop it; do not cite it as stack until then |
+| Animation | CSS/Tailwind transitions only. Framer Motion was declared and never imported once; removed in Phase 1. Do not reintroduce it without an actual use |
 | Forms | React Hook Form + Zod 4 (`@hookform/resolvers`) |
 | i18n | i18next + react-i18next + browser language detector (client-side) |
 | Theming | next-themes |
-| Icons | lucide-react, flag-icons |
+| Icons | lucide-react, plus inline SVG in `components/icons/` |
 | Email | Resend + React Email |
 | Utils | clsx, tailwind-merge |
 
@@ -58,7 +63,8 @@ src/
 ├── app/                  # layout.tsx, page.tsx, globals.css
 │   └── api/contact/      # route.ts — the only API route
 ├── components/
-│   ├── icons/            # SocialIcons.tsx (GitHub, LinkedIn, Mail — inline SVG)
+│   ├── icons/            # SocialIcons.tsx (GitHub, LinkedIn, Mail)
+│   │                     # FlagIcons.tsx (GB, ES) — all inline SVG
 │   ├── layout/           # Header, Footer, LanguageToggle, ThemeToggle, ThemeProvider
 │   ├── providers/        # I18nProvider
 │   ├── sections/         # one folder per section:
@@ -69,11 +75,12 @@ src/
 ├── emails/               # ContactEmail, ConfirmationEmail.es, ConfirmationEmail.en
 ├── hooks/                # useExperience, useProjects, useSkills
 ├── i18n/                 # config.ts + locales/{es,en}.json (101 keys each, in parity)
-├── lib/                  # utils.ts (cn), validations/contact.ts (Zod)
-│                         #   constants.ts — dead, never imported, holds wrong URLs
-│                         #   animations.ts — EMPTY FILE
-└── types/                # index.ts — EMPTY FILE
+└── lib/                  # utils.ts (cn), validations/contact.ts (Zod)
 ```
+
+`src/types/` no longer exists: it held a single empty file and was removed in
+Phase 1. The convention below still says shared types belong there — create the
+directory when there is a type to put in it, not before.
 
 Corrections against the previous bootstrapped version, so they are not
 reintroduced:
@@ -83,10 +90,6 @@ reintroduced:
 - **`components/icons/` was missing** from the tree.
 - Section components sit **one level deeper** than implied
   (`sections/About/About.tsx`, not `sections/About.tsx`).
-- `lib/animations.ts` and `types/index.ts` **exist but are empty**;
-  `lib/constants.ts` is **never imported**. Treat all three as dead code —
-  the `types/` entry in particular contradicts the "shared types go in
-  `src/types/`" convention below, which currently has nothing to point at.
 
 ## Conventions
 
@@ -108,13 +111,13 @@ The rules above are the target. Measured state of the code today:
 
 | Convention | Status |
 |---|---|
-| Language: English | ⚠️ Code and docs are English, but many inline comments are Spanish (`data/projects.ts`, `Contact.tsx`, `validations/contact.ts`) |
-| Server first | ❌ **14 of 20 components are `"use client"`.** 6 of them (About, Experience, Skills, Projects, Footer, and mostly Hero) only because they call `useTranslation` |
+| Language: English | ⚠️ Spanish inline comments remain in `data/projects.ts`, `Contact.tsx` and `validations/contact.ts`. `api/contact/route.ts` was translated in Phase 1 |
+| Server first | ❌ **14 of 23 `.tsx` files are `"use client"`** (re-counted 2026-08-31; 23 excludes the three `emails/` templates). 6 of them (About, Experience, Skills, Projects, Footer, and mostly Hero) only because they call `useTranslation` |
 | `cn()` for conditional classes | ⚠️ Used in Badge, Button, Card, Section, LanguageToggle. **`Header.tsx:53-57` concatenates a template literal instead** |
 | Design tokens, no hardcoded colours | ⚠️ No hex literals anywhere ✅, but `Contact.tsx` (21×) and `Terminal.tsx` (15×) bypass the tokens with raw `gray-*`/`red-*`/`white/10` utilities |
 | Zod on every form and API input | ✅ Met — both use `getContactFormSchema` from `lib/validations/` |
 | Types via `z.infer` | ✅ Met |
-| Copy in locale files | ❌ **15 user-facing strings hardcoded** — 7 visible (6 are the contact form labels) + 8 a11y attributes, all English-only |
+| Copy in locale files | ❌ **14 user-facing strings hardcoded** — 7 visible (6 are the contact form labels) + 7 a11y attributes, all English-only. One of the eight went away in Phase 1: the flags became `aria-hidden`, so their `aria-label` stopped being needed rather than being translated |
 | Both locales updated | ✅ 101 keys each, perfect parity, 0 orphans |
 | No `any` | ✅ Met — zero occurrences in `src/` |
 | Naming | ✅ Met |
@@ -133,9 +136,16 @@ this — give it the directive or move the translation up.
 
 ## Known issues
 
-All verified against the code on 2026-08-11 — none was already fixed. Evidence
-and measurements: [`docs/audit/baseline-2026-08-11.md`](docs/audit/baseline-2026-08-11.md).
+Re-verified against the code on **2026-08-31**, after Phase 1. Evidence and
+measurements: [`docs/audit/baseline-2026-08-11.md`](docs/audit/baseline-2026-08-11.md).
 Do not reintroduce any of these. Remove the entry once fixed.
+
+**Closed by Phase 1 and verified gone — do not "fix" them again:** the PII in
+the contact logs (1), the missing rate limiting, origin check and honeypot (2),
+the missing security headers (3), the unused `framer-motion` (9), the whole
+`flag-icons` import (10), Resend's raw response reaching the client (12), and
+the dead files (14). The numbering below keeps its original gaps on purpose, so
+the entries still match the audit reports.
 
 **0. The page is served with no content.** `I18nProvider` returns `null` until
 a client-side `useEffect` initialises i18next
@@ -145,23 +155,13 @@ tree in `layout.tsx`. The prerendered `<body>` is literally
 Production serves the same 9 893-byte shell. Everything renders client-side
 only. This outranks every other issue here.
 
-1. **`src/app/api/contact/route.ts` logs form data to the console.** Five
-   `console.log` at lines 16-20; **line 16 dumps the entire request body**
-   (name, email, full message) into the Vercel logs on every submission.
-   Line 69 also logs the raw error object.
-2. **The contact endpoint has no rate limiting and no origin validation.**
-   Anyone can hammer it. No honeypot, no `Content-Type` check. The recipient
-   and sender addresses are hardcoded rather than env vars.
-3. **No security headers configured in `next.config.ts`** — the file is empty.
-   Verified against production with `curl -I`: only Vercel's default `HSTS` is
-   present. Missing CSP, `X-Frame-Options`, `X-Content-Type-Options`,
-   `Referrer-Policy`, `Permissions-Policy`.
 4. **`<html lang="en">` is hardcoded in `layout.tsx:33`** while the site serves
    Spanish and English. Nothing updates it on language change — `LanguageToggle`
    only calls `i18n.changeLanguage()`.
-5. **Too many components are client components** — 14 of 20. Six of them are
-   client-only because they call `useTranslation`, nothing else. See the
-   per-file breakdown in the audit.
+5. **Too many components are client components** — 14 of 23 `.tsx` files as of
+   2026-08-31 (23 excludes the three `emails/` templates, which are not app
+   components). Six are client-only because they call `useTranslation`, nothing
+   else. See the per-file breakdown in the audit.
 6. **No tests, no error boundaries, no analytics.** No test framework
    installed; no `error.tsx`, `global-error.tsx`, `not-found.tsx` or
    `loading.tsx` anywhere.
@@ -176,22 +176,14 @@ only. This outranks every other issue here.
    Twitter card, JSON-LD, `metadataBase`, canonical or hreflang. Metadata is a
    static object with only title, description and icon, so it cannot vary by
    language.
-9. **`framer-motion` is declared but never imported.** It is nevertheless
-   advertised as stack in `README.md:15,26`, listed as a portfolio technology
-   in `data/projects.ts:25`, and claimed at 70 % proficiency in
-   `data/skills.ts:30`. Recruiters read all three.
-10. **`flag-icons` is imported whole** in `globals.css:2`: 271 flags, 542
-    rules, **32.4 KB — 44 % of the 73.1 KB CSS bundle** — to render two flags.
-11. **The contact form has no labels.** No `<label>`, `htmlFor` or `id` on any
-    input in `Contact.tsx`; the visible captions are decorative `<span>`s.
-    Errors render as plain `<p>` with no `role="alert"`, and submit state has
-    no `aria-live` region.
-12. **The contact API returns Resend's raw responses to the client**
-    (`route.ts:61-67`). The client only reads `response.ok`.
+11. **The contact form has no labels.** No `<label>` or `htmlFor` on any of the
+    three real inputs in `Contact.tsx`; the visible captions are decorative
+    `<span>`s. Errors render as plain `<p>` with no `role="alert"`, and submit
+    state has no `aria-live` region. Note: the file does contain one `htmlFor`,
+    on the honeypot — it is decorative and does not count.
 13. **Images are unoptimised at the source.** No `<Image>` sets `sizes`; About
-    loads two ~1 MB PNGs of the same face with `priority` for an
-    `lg:`-only hover effect; `public/images/avatar.jpg` (1.2 MB) is never
-    referenced.
+    loads two ~1 MB PNGs of the same face with `priority` for an `lg:`-only
+    hover effect. (The unreferenced `avatar.jpg` was deleted in Phase 1.)
     **Magnitude corrected by measurement** ([`network-2026-08-20.md`](docs/audit/network-2026-08-20.md)):
     `next/image` serves those PNGs as ~32 kB WebP, so the pair costs **63.6 kB
     transferred, not ~2 MB**. The defect stands; the number does not. Both still
@@ -199,10 +191,6 @@ only. This outranks every other issue here.
     is currently **latent** — Next requests a `w=1200` variant on a 390 px phone
     and only the 768 px source width caps the waste, so **raising the source
     resolution without adding `sizes` would make things worse, not better.**
-14. **Dead code.** `lib/animations.ts` and `types/index.ts` are empty files;
-    `lib/constants.ts` is never imported and contains a wrong production URL
-    and a LinkedIn handle that disagrees with `Footer.tsx:28`.
-
 ### Found during the Phase 0 measurements (18-20 August 2026)
 
 Each entry links to the report that measured it. Reports live in `docs/audit/`.
@@ -243,6 +231,39 @@ Each entry links to the report that measured it. Reports live in `docs/audit/`.
     the cause is `export * as locales` inside the package itself, which no
     bundler can prove is unreachable. Do not re-investigate without new
     information — recheck only if `zod` replaces that re-export.
+
+### Left open by Phase 1 (2026-08-31)
+
+None of these blocked the phase; all are recorded so they are not rediscovered
+from scratch.
+
+19. **The confirmation email fails for every real visitor.** With the
+    `onboarding@resend.dev` sender, Resend only delivers to the account owner's
+    own address, so every visitor who is not Adriana gets a 403 on the second
+    email while the first one goes through. Measured:
+    `contact_confirmation_failed { name: 'validation_error', statusCode: 403 }`.
+    The endpoint deliberately still answers 200, because the message *did* reach
+    its destination and telling the visitor otherwise would make them resend.
+    **This is a product decision, not a bug to patch:** verify a domain and set
+    `CONTACT_FROM_EMAIL` to it, or drop the confirmation email until then.
+    Promising a confirmation nobody receives is the one option to avoid.
+20. **`Access-Control-Allow-Origin: *` on the HTML.** A Vercel default the
+    2026-08-11 audit flagged and Phase 1 did not address — card 1.7 enumerated
+    five specific headers and this was not one. Low impact: it lets any origin
+    read HTML that is already public, and carries no credentials. Removable with
+    one entry in `headers()`.
+21. **The CSP allows `'unsafe-inline'` in `script-src`,** because Next injects
+    inline scripts for hydration and allowing them properly needs per-request
+    nonces from middleware. So the policy does **not** defend against XSS, its
+    headline use. What it does enforce is `frame-ancestors`, `form-action`,
+    `base-uri`, `object-src` and `default-src`. Do not describe it as XSS
+    protection until the nonces exist.
+22. **A 429 shows the generic error message.** `Contact.tsx` only reads
+    `response.ok` and ignores the `Retry-After` header, so a visitor who submits
+    too often is told "something went wrong" rather than "wait a few minutes".
+    Natural fit for Phase 3, alongside the form's other messaging work.
+23. **`console.error` in `Contact.tsx`.** Client-side, so it prints in the
+    visitor's own browser and leaks nothing to the server logs. Cosmetic.
 
 ### Checked and found NOT to be a problem
 
