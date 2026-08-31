@@ -36,8 +36,6 @@ export default function RootLayout({
         suppressHydrationWarning
       >
         <I18nProvider>
-          {" "}
-          {/* ← NUEVO */}
           <ThemeProvider>{children}</ThemeProvider>
         </I18nProvider>
       </body>

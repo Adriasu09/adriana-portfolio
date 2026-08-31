@@ -28,35 +28,43 @@ confirmation emails, and a light/dark theme. It is deployed on Vercel at
 
 ### Dependencies
 
-- **Node.js 20 or later** — required by Next.js 16
-- **npm** — the repository ships a `package-lock.json`; mixing package managers
-  breaks reproducible installs
+- **Node.js 24.x** — pinned in `engines` and matching the version Vercel builds
+  with; Next.js 16 itself only requires 20 or later
+- **pnpm** — the repository ships a `pnpm-lock.yaml` and pins the exact pnpm
+  version in `packageManager`; mixing package managers breaks reproducible
+  installs
 
 ### Setup
 
 ```bash
 git clone https://github.com/Adriasu09/adriana-portfolio.git
 cd adriana-portfolio
-npm install
+pnpm install
 cp .env.example .env.local
 ```
 
-The contact form needs a [Resend](https://resend.com) API key. Add it to
-`.env.local`:
+The contact form needs a [Resend](https://resend.com) API key and the two
+addresses it sends from and to. Add them to `.env.local`:
 
 ```
 RESEND_API_KEY=re_your_api_key_here
+CONTACT_TO_EMAIL=you@example.com
+CONTACT_FROM_EMAIL=onboarding@resend.dev
 ```
 
-Without the key the site runs, but submitting the contact form fails.
+All three are server-side only. Prefixing them with `NEXT_PUBLIC_` would embed
+them in the client bundle at build time, where anyone can read them.
+
+Without them the site runs, but submitting the contact form fails.
 
 ## Usage
 
 ```bash
-npm run dev      # development server on http://localhost:3000
-npm run build    # production build
-npm run start    # serve the production build
-npm run lint     # ESLint
+pnpm dev        # development server on http://localhost:3000
+pnpm build      # production build
+pnpm start      # serve the production build
+pnpm lint       # ESLint
+pnpm typecheck  # tsc --noEmit
 ```
 
 ## Features
@@ -154,15 +162,16 @@ Deployed on Vercel.
 
 - **Production:** [adriana-portfolio-blue.vercel.app](https://adriana-portfolio-blue.vercel.app/)
 
-`RESEND_API_KEY` must be configured as an environment variable in the Vercel
-project. It is never committed: `.env.example` holds the key name and no value.
+`RESEND_API_KEY`, `CONTACT_TO_EMAIL` and `CONTACT_FROM_EMAIL` must be configured
+as environment variables in the Vercel project, for both Production and Preview.
+They are never committed: `.env.example` holds the names and no values.
 
 ## Maintainers
 
 [Adriana Suárez](https://github.com/Adriasu09)
 
 - **Email:** adsuarez09@gmail.com
-- **LinkedIn:** [Adriana Suárez](https://www.linkedin.com/in/adriana-su%C3%A1rez-4562a5249/)
+- **LinkedIn:** [Adriana Suárez](https://www.linkedin.com/in/adriana-suarez-colmenares/)
 
 ## Contributing
 

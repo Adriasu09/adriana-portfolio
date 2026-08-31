@@ -46,7 +46,7 @@ export function ConfirmationEmailEN({ name }: ConfirmationEmailProps) {
             </a>{" "}
             or connect with me on{" "}
             <a
-              href="https://www.linkedin.com/in/adriana-su%C3%A1rez-4562a5249/"
+              href="https://www.linkedin.com/in/adriana-suarez-colmenares/"
               style={link}
             >
               LinkedIn

@@ -4,10 +4,11 @@ import { useState, useEffect, useRef } from "react";
 import { Globe, Check } from "lucide-react";
 import { useTranslation } from "react-i18next";
 import { cn } from "@/lib/utils";
+import { FlagGB, FlagES } from "@/components/icons/FlagIcons";
 
 const languages = [
-  { code: "en", name: "English", flagCode: "gb" },
-  { code: "es", name: "Español", flagCode: "es" },
+  { code: "en", name: "English", Flag: FlagGB },
+  { code: "es", name: "Español", Flag: FlagES },
 ] as const;
 
 export function LanguageToggle() {
@@ -67,16 +68,7 @@ export function LanguageToggle() {
               <div className="flex items-center gap-3">
                 {/* Flag Icon */}
                 <div className="flex h-5 w-5 items-center justify-center overflow-hidden rounded-full">
-                  <span
-                    className={`fi fi-${lang.flagCode}`}
-                    style={{
-                      width: "20px",
-                      height: "20px",
-                      transform: "scale(1.3)",
-                    }}
-                    role="img"
-                    aria-label={`${lang.name} flag`}
-                  />
+                  <lang.Flag className="h-5 w-5" />
                 </div>
                 <span className="text-sm font-medium text-primary-color">
                   {lang.name}
