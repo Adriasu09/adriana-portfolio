@@ -2,7 +2,6 @@ import type { Metadata } from "next";
 import { Inter, JetBrains_Mono } from "next/font/google";
 import "../globals.css";
 import { ThemeProvider } from "@/components/layout/ThemeProvider";
-import { I18nProvider } from "@/components/providers/I18nProvider";
 import { locales } from "@/i18n/locales";
 
 const inter = Inter({
@@ -46,9 +45,7 @@ export default async function RootLayout({
         className={`${inter.variable} ${jetbrainsMono.variable} font-sans antialiased`}
         suppressHydrationWarning
       >
-        <I18nProvider>
-          <ThemeProvider>{children}</ThemeProvider>
-        </I18nProvider>
+        <ThemeProvider>{children}</ThemeProvider>
       </body>
     </html>
   );

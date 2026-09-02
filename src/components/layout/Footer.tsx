@@ -1,12 +1,8 @@
-"use client";
-
-import { useTranslation } from "react-i18next";
 import { Terminal, MapPin } from "lucide-react";
 import { GitHubIcon, LinkedInIcon, MailIcon } from "@/components/icons/SocialIcons";
+import type { Translator } from "@/i18n/dictionaries";
 
-export function Footer() {
-  const { t } = useTranslation();
-
+export function Footer({ t }: { t: Translator }) {
   const currentYear = new Date().getFullYear();
 
   const navigation = [
