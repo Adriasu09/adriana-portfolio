@@ -68,7 +68,7 @@ export function About() {
             {/* Foto SIN gafas (base) - solo visible en desktop con grayscale */}
             <Image
               src="/images/nana_sin_gafas.png"
-              alt="Adriana Suárez - Frontend Developer"
+              alt={t("about.photoAlt")}
               fill
               className="object-cover grayscale transition-all duration-700 ease-in-out hidden lg:block"
               priority
@@ -76,7 +76,7 @@ export function About() {
             {/* Foto CON gafas (hover en desktop, siempre visible en móvil) */}
             <Image
               src="/images/nana_con_gafas.png"
-              alt="Adriana Suárez - Frontend Developer"
+              alt={t("about.photoAlt")}
               fill
               className="object-cover lg:absolute lg:inset-0 lg:opacity-0 lg:group-hover:opacity-100 transition-all duration-700 ease-in-out"
               priority

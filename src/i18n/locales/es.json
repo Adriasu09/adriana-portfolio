@@ -49,7 +49,8 @@
       }
     },
     "downloadCV": "Descargar CV",
-    "getInTouch": "Contáctame"
+    "getInTouch": "Contáctame",
+    "photoAlt": "Adriana Suárez, desarrolladora frontend"
   },
   "experience": {
     "title": "Experiencia Profesional",
@@ -146,7 +147,11 @@
         "emailRequired": "El email es requerido",
         "messageMin": "El mensaje debe tener al menos 10 caracteres",
         "messageMax": "El mensaje no puede exceder 1000 caracteres"
-      }
+      },
+      "prompt": "Contacto:",
+      "nameLabel": "Nombre",
+      "emailLabel": "Email",
+      "messageLabel": "Mensaje"
     }
   },
   "footer": {
@@ -156,6 +161,12 @@
     "availability": "Disponible para proyectos freelance",
     "rights": "Todos los derechos reservados.",
     "madeWith": "Hecho con",
-    "and": "y"
+    "and": "y",
+    "location": "Madrid, España"
+  },
+  "a11y": {
+    "selectLanguage": "Seleccionar idioma",
+    "switchTo": "Cambiar a",
+    "toggleTheme": "Cambiar tema"
   }
 }

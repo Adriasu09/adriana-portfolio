@@ -90,7 +90,7 @@ export function Header() {
         {/* Right section */}
         <div className="flex items-center gap-4">
           <LanguageToggle />
-          <ThemeToggle />
+          <ThemeToggle label={t("a11y.toggleTheme")} />
           <Button
             variant="primary"
             size="sm"

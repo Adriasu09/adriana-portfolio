@@ -47,7 +47,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 bg-subtle rounded-lg hover:bg-primary hover:text-white transition-all text-sm font-medium"
-              aria-label="View on GitHub"
+              aria-label={`${t("projects.buttons.viewRepo")}: ${project.title}`}
             >
               <Github className="w-4 h-4" />
               {t("projects.buttons.viewRepo")}
@@ -59,7 +59,7 @@ export function ProjectCard({ project }: ProjectCardProps) {
               target="_blank"
               rel="noopener noreferrer"
               className="flex items-center gap-2 px-4 py-2 bg-primary text-white rounded-lg hover:bg-primary-dark transition-all text-sm font-medium"
-              aria-label="View live demo"
+              aria-label={`${t("projects.buttons.viewLive")}: ${project.title}`}
             >
               <ExternalLink className="w-4 h-4" />
               {t("projects.buttons.viewLive")}
