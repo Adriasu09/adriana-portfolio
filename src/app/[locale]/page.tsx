@@ -25,15 +25,19 @@ export default async function Home({
     <>
       <I18nProvider>
         <Header />
-        <main className="bg-base">
+      </I18nProvider>
+      <main className="bg-base">
+        <I18nProvider>
           <Hero />
-          <About />
-          <Experience />
+        </I18nProvider>
+        <About t={t} />
+        <Experience t={t} />
+        <I18nProvider>
           <Skills />
           <Projects />
           <Contact />
-        </main>
-      </I18nProvider>
+        </I18nProvider>
+      </main>
       <Footer t={t} />
     </>
   );
