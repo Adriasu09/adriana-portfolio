@@ -1,13 +1,10 @@
-"use client";
-
-import { useTranslation } from "react-i18next";
 import { Section, SectionHeader, Card, Badge } from "@/components/ui";
 import { Briefcase } from "lucide-react";
-import { useExperience } from "@/hooks/useExperience";
+import { getExperiencesWithTranslations } from "@/data/experience";
+import type { Translator } from "@/i18n/dictionaries";
 
-export function Experience() {
-  const { t } = useTranslation();
-  const experiences = useExperience();
+export function Experience({ t }: { t: Translator }) {
+  const experiences = getExperiencesWithTranslations(t);
 
   return (
     <Section id="experience">

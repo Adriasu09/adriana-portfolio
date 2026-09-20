@@ -1,12 +1,8 @@
-"use client";
-
-import { useTranslation } from "react-i18next";
 import Image from "next/image";
 import { Section, SectionHeader } from "@/components/ui";
+import type { Translator } from "@/i18n/dictionaries";
 
-export function About() {
-  const { t } = useTranslation();
-
+export function About({ t }: { t: Translator }) {
   const stats = [
     {
       value: t("about.stats.experience.value"),
