@@ -51,7 +51,7 @@ export function Footer({ t }: { t: Translator }) {
             </p>
             <div className="flex items-center gap-2 text-tertiary-color text-sm">
               <MapPin className="w-4 h-4" />
-              <span>Madrid, España</span>
+              <span>{t("footer.location")}</span>
             </div>
           </div>
 

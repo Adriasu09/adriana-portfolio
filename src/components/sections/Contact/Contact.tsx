@@ -113,8 +113,8 @@ export function Contact() {
             {/* Name Field */}
             <div className="space-y-2 text-left">
               <div className="flex gap-2 text-gray-400 text-sm uppercase font-mono">
-                <span>Contact:</span>
-                <span>Name</span>
+                <span>{t("contact.form.prompt")}</span>
+                <span>{t("contact.form.nameLabel")}</span>
               </div>
               <div className="flex items-center gap-2 border-b border-white/20 pb-2">
                 <span className="text-primary font-mono">➜</span>
@@ -136,8 +136,8 @@ export function Contact() {
             {/* Email Field */}
             <div className="space-y-2 text-left">
               <div className="flex gap-2 text-gray-400 text-sm uppercase font-mono">
-                <span>Contact:</span>
-                <span>Email</span>
+                <span>{t("contact.form.prompt")}</span>
+                <span>{t("contact.form.emailLabel")}</span>
               </div>
               <div className="flex items-center gap-2 border-b border-white/20 pb-2">
                 <span className="text-primary font-mono">➜</span>
@@ -159,8 +159,8 @@ export function Contact() {
             {/* Message Field */}
             <div className="space-y-2 text-left">
               <div className="flex gap-2 text-gray-400 text-sm uppercase font-mono">
-                <span>Contact:</span>
-                <span>Message</span>
+                <span>{t("contact.form.prompt")}</span>
+                <span>{t("contact.form.messageLabel")}</span>
               </div>
               <div className="flex gap-2">
                 <span className="text-primary font-mono mt-1">➜</span>
